@@ -2,7 +2,7 @@ type 'a bwd =
   | Emp
   | Snoc of 'a bwd * 'a
 
-module Bwd :
+module BwdLabels :
 sig
   (** This module is intended to mimic a small part of the {!module:Stdlib.ListLabels} module. We only add the functions we need. *)
 

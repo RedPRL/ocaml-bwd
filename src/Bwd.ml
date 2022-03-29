@@ -2,7 +2,7 @@ type 'a bwd =
   | Emp
   | Snoc of 'a bwd * 'a
 
-module Bwd =
+module BwdLabels =
 struct
   type 'a t = 'a bwd =
     | Emp
