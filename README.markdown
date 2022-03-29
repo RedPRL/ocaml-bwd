@@ -17,7 +17,8 @@ One should never reverse a list without changing its type.
 
 ```ocaml
 open Bwd
-open Bwd.Notation
+open BwdNotation
 
 let b1 = Emp #< 1 #< 2 #< 3
+let b2 = BwdLabels.map ~f:(fun x -> x + 1) b1
 ```
