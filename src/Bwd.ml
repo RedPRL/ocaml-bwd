@@ -2,7 +2,7 @@ type 'a bwd =
   | Emp
   | Snoc of 'a bwd * 'a
 
-module Bwd =
+module BwdLabels =
 struct
   type 'a t = 'a bwd =
     | Emp
@@ -20,11 +20,11 @@ struct
 
   let nth xs i =
     if i < 0 then
-      invalid_arg "Bwd.nth"
+      invalid_arg "BwdLabels.nth"
     else
       let rec go =
         function
-        | Emp, _ -> failwith "Bwd.nth"
+        | Emp, _ -> failwith "BwdLabels.nth"
         | Snoc (_, x), 0 -> x
         | Snoc (xs, _), i -> (go[@tailcall]) (xs, i - 1)
       in go (xs, i)
@@ -44,13 +44,6 @@ struct
       | Snoc (xs, x), ys ->
         go (xs, x :: ys)
     in go (xs, ys)
-
-  module Notation =
-  struct
-    let (#<) = snoc
-    let (<><) = append
-    let (<>>) = prepend
-  end
 
   let equal ~eq xs ys =
     let rec go =
@@ -136,7 +129,7 @@ struct
       | Snoc (xs, x), Snoc (ys, y) ->
         let init = f x y init in
         go init (xs, ys)
-      | _ -> invalid_arg "Bwd.fold_right2"
+      | _ -> invalid_arg "BwdLabels.fold_right2"
     in
     go init (xs, ys)
 
@@ -180,4 +173,12 @@ struct
 
   let of_list xs =
     append Emp xs
+end
+
+module BwdNotation =
+struct
+  open BwdLabels
+  let (#<) = snoc
+  let (<><) = append
+  let (<>>) = prepend
 end
