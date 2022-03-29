@@ -16,14 +16,6 @@ sig
   val append : 'a t -> 'a list -> 'a t
   val prepend : 'a t -> 'a list -> 'a list
 
-  module Notation :
-  sig
-    (** Notation inspired by Conor McBride. *)
-    val (#<) : 'a t -> 'a -> 'a t
-    val (<><) : 'a t -> 'a list -> 'a t
-    val (<>>) : 'a t -> 'a list -> 'a list
-  end
-
   (** {1 Comparison} *)
 
   val equal : eq:('a -> 'a -> bool) -> 'a t -> 'a t -> bool
@@ -57,4 +49,12 @@ sig
 
   val to_list : 'a t -> 'a list
   val of_list : 'a list -> 'a t
+end
+
+module BwdNotation :
+sig
+  (** Notation inspired by Conor McBride. *)
+  val (#<) : 'a bwd -> 'a -> 'a bwd
+  val (<><) : 'a bwd -> 'a list -> 'a bwd
+  val (<>>) : 'a bwd -> 'a list -> 'a list
 end
