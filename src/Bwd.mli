@@ -27,7 +27,10 @@ sig
   val map : f:('a -> 'b) -> 'a t -> 'b t
   val mapi : f:(int -> 'a -> 'b) -> 'a t -> 'b t
   val filter_map : f:('a -> 'b option) -> 'a t -> 'b t
+
   val concat_map : f:('a -> 'b list) -> 'a t -> 'b t
+  [@@ocaml.alert deprecated "This function is ill-designed and will be removed or changed in the next major release."]
+
   val fold_left : f:('a -> 'b -> 'a) -> init:'a -> 'b t -> 'a
   val fold_right : f:('a -> 'b -> 'b) -> 'a t -> init:'b -> 'b
 
