@@ -34,7 +34,7 @@ struct
       function
       | xs, [] -> xs
       | xs, y :: ys ->
-        go (Snoc (xs, y), ys)
+        (go[@tailcall]) (Snoc (xs, y), ys)
     in go (xs, ys)
 
   let prepend xs ys =
@@ -42,7 +42,7 @@ struct
       function
       | Emp, ys -> ys
       | Snoc (xs, x), ys ->
-        go (xs, x :: ys)
+        (go[@tailcall]) (xs, x :: ys)
     in go (xs, ys)
 
   let equal ~eq xs ys =
@@ -50,7 +50,7 @@ struct
       function
       | Emp, Emp -> true
       | Snoc (xs, x), Snoc (ys, y) ->
-        eq x y && go (xs, ys)
+        eq x y && (go[@tailcall]) (xs, ys)
       | _ -> false
     in go (xs, ys)
 
@@ -62,7 +62,7 @@ struct
       | _, Emp -> 1
       | Snoc (xs, x), Snoc (ys, y) ->
         let c = cmp x y in
-        if c <> 0 then c else go (xs, ys)
+        if c <> 0 then c else (go[@tailcall]) (xs, ys)
     in go (xs, ys)
 
   let iter ~f =
@@ -77,14 +77,14 @@ struct
     let[@tail_mod_cons] rec go =
       function
       | Emp -> Emp
-      | Snoc (xs, x) -> Snoc (go xs, f x)
+      | Snoc (xs, x) -> Snoc ((go[@tailcall]) xs, f x)
     in go
 
   let mapi ~f =
     let[@tail_mod_cons] rec go i =
       function
       | Emp -> Emp
-      | Snoc (xs, x) -> Snoc (go (i + 1) xs, f i x)
+      | Snoc (xs, x) -> Snoc ((go[@tailcall]) (i + 1) xs, f i x)
     in
     go 0
 
@@ -95,7 +95,7 @@ struct
       | Snoc (xs, x) ->
         match f x with
         | None -> go xs
-        | Some fx -> Snoc (go xs, fx)
+        | Some fx -> Snoc ((go[@tailcall]) xs, fx)
     in go
 
   let concat_map ~f =
@@ -119,7 +119,7 @@ struct
       | Emp -> init
       | Snoc (xs, x) ->
         let init = f x init in
-        go init xs
+        (go[@tailcall]) init xs
     in go init xs
 
   let fold_right2 ~f xs ys ~init =
@@ -128,7 +128,7 @@ struct
       | Emp, Emp -> init
       | Snoc (xs, x), Snoc (ys, y) ->
         let init = f x y init in
-        go init (xs, ys)
+        (go[@tailcall]) init (xs, ys)
       | _ -> invalid_arg "BwdLabels.fold_right2"
     in
     go init (xs, ys)
@@ -165,7 +165,7 @@ struct
         if f x then
           go xs
         else
-          Snoc (go xs, x)
+          Snoc ((go[@tailcall]) xs, x)
     in go
 
   let to_list xs =

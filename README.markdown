@@ -4,6 +4,10 @@ This OCaml package defines backward lists that are isomorphic to lists. They are
 
 ## How to Use It
 
+### OCaml >= 4.14
+
+You need OCaml 4.14.0 or newer due to the use of the [experimental TMC feature](https://www.ocaml.org/manual/tail_mod_cons.html).
+
 ### Example Code
 
 ```ocaml
