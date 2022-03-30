@@ -33,4 +33,4 @@ One should never reverse a list without changing its type.
 
 ### Minimality
 
-This library is currently to serve proof assistants developed by the RedPRL Development Team (for example, cooltt), so we add only include a small collection of functions, and will deprecate unused or ill-designed functions quickly. That said, please [open an GitHub issue](https://github.com/RedPRL/ocaml-bwd/issues/new/choose) if some function will be helpful for your project. We will be happy to see that you find backward lists useful, too!
+This library is currently to serve proof assistants developed by the RedPRL Development Team (for example, cooltt), so we include only a small collection of functions, and will deprecate unused or ill-designed functions quickly. That said, please [open a GitHub issue](https://github.com/RedPRL/ocaml-bwd/issues/new/choose) if some function would have been helpful for your project. We will be happy to see that you find backward lists useful, too!
