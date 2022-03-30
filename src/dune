@@ -1,3 +1,5 @@
 (library
  (name Bwd)
+ (flags
+  (:standard -warn-error +a-51))
  (public_name bwd))

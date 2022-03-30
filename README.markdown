@@ -6,7 +6,7 @@ This OCaml package defines backward lists that are isomorphic to lists. They are
 
 ### OCaml >= 4.14
 
-You need OCaml 4.14.0 or newer due to the use of the [experimental TMC feature](https://www.ocaml.org/manual/tail_mod_cons.html).
+You need OCaml 4.14.0 or newer to enjoy the [experimental TMC feature](https://www.ocaml.org/manual/tail_mod_cons.html). Otherwise, there will be warnings about incorrect `tailcall` annotations because order versions of OCaml cannot automatically make some functions tail-recursive.
 
 ### Example Code
 
