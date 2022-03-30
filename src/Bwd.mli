@@ -4,7 +4,7 @@ type 'a bwd =
 
 module BwdLabels :
 sig
-  (** This module is intended to mimic a small part of the {!module:Stdlib.ListLabels} module. We only add the functions we need. *)
+  (** This module mimics a small part of the {!module:Stdlib.ListLabels} module. *)
 
   type 'a t = 'a bwd =
     | Emp
