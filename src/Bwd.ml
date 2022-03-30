@@ -74,14 +74,14 @@ struct
     in go
 
   let map ~f =
-    let rec go =
+    let[@tail_mod_cons] rec go =
       function
       | Emp -> Emp
       | Snoc (xs, x) -> Snoc (go xs, f x)
     in go
 
   let mapi ~f =
-    let rec go i =
+    let[@tail_mod_cons] rec go i =
       function
       | Emp -> Emp
       | Snoc (xs, x) -> Snoc (go (i + 1) xs, f i x)
@@ -89,7 +89,7 @@ struct
     go 0
 
   let filter_map ~f =
-    let rec go =
+    let[@tail_mod_cons] rec go =
       function
       | Emp -> Emp
       | Snoc (xs, x) ->
@@ -158,7 +158,7 @@ struct
     in go set
 
   let filter ~f =
-    let rec go =
+    let[@tail_mod_cons] rec go =
       function
       | Emp -> Emp
       | Snoc (xs, x) ->
