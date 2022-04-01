@@ -10,7 +10,7 @@ The API is relatively stable.
 
 ### OCaml >= 4.14
 
-You need OCaml 4.14.0 or newer to enjoy the [experimental TMC feature](https://www.ocaml.org/manual/tail_mod_cons.html). Otherwise, there will be warnings about incorrect `tailcall` annotations because order versions of OCaml cannot automatically make some functions tail-recursive.
+You need OCaml 4.14.0 or newer to enjoy the [experimental TMC feature](https://www.ocaml.org/manual/tail_mod_cons.html). Otherwise, there will be warnings about incorrect `tailcall` annotations because order versions of OCaml cannot automatically transform some functions into tail-recursive ones.
 
 ### Example Code
 
