@@ -52,7 +52,7 @@ The idea is that the textual order of elements should never change---what's on t
 - `List.rev_map2`
 - `List.rev_append`
 
-On the other hand, functions in this library (except the general folds) only move elements between forward and backward lists without changing their textual order. The yoga of moving elements should ring a bell for people who have implemented normalization by evaluation (NbE). This simple trick of maintaining textual order seems to prevent many potential bugs in our proof assistants.
+On the other hand, functions in this library (except the general folds) only move elements between forward and backward lists without changing their textual order. The yoga of moving elements should ring a bell for people who have implemented normalization by evaluation (NbE). This simple trick of maintaining textual order seems to have prevented many potential bugs in our proof assistants.
 
 ### Minimality
 
