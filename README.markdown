@@ -19,21 +19,21 @@ open Bwd
 open BwdNotation
 
 (* `Emp` is the empty list and `#<` is snoc (cons in reverse).
-   The result is the backward list corresponding to [1; 2; 3] *)
+   The following expression gives the backward list corresponding to [1; 2; 3]. *)
 let b1 : int bwd = Emp #< 1 #< 2 #< 3
 
 (* The library has a few common functions for backward lists.
-   The result is the backward list corresponding to [2; 3; 4]. *)
+   The following expression gives the backward list corresponding to [2; 3; 4]. *)
 let b2 : int bwd = BwdLabels.map ~f:(fun x -> x + 1) b1
 
 (* bwd yoga 1: `<><` for moving elements from a forward list on the right
    to a backward list on the left. The notation was inspired by Conor McBride.
-   The result is the backward list corresponding to [1; 2; 3; 4; 5; 6] *)
+   The following expression gives the backward list corresponding to [1; 2; 3; 4; 5; 6]. *)
 let b3 : int bwd = b1 <>< [4; 5; 6]
 
 (* bwd yoga 2: `<>>` for moving elements from a backward list on the left
    to a forward list on the right. The notation was inspired by Conor McBride.
-   The result is the forward list [1; 2; 3; 4; 5; 6; 7; 8; 9] *)
+   The following expression gives the forward list [1; 2; 3; 4; 5; 6; 7; 8; 9]. *)
 let l4 : int bwd = b3 <>> [7; 8; 9]
 ```
 
