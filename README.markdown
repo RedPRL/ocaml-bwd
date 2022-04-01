@@ -34,7 +34,7 @@ let b3 : int bwd = b1 <>< [4; 5; 6]
 (* bwd yoga 2: `<>>` for moving elements from a backward list on the left
    to a forward list on the right. The notation was inspired by Conor McBride.
    The following expression gives the forward list [1; 2; 3; 4; 5; 6; 7; 8; 9]. *)
-let l4 : int bwd = b3 <>> [7; 8; 9]
+let l4 : int list = b3 <>> [7; 8; 9]
 ```
 
 ### Documentation
@@ -56,4 +56,4 @@ On the other hand, functions in this library (except the general folds) only mov
 
 ### Minimality
 
-This library is currently to serve proof assistants developed by the RedPRL Development Team (for example, cooltt), so we include only a small collection of functions, and will deprecate unused or ill-designed functions quickly. That said, please [open a GitHub issue](https://github.com/RedPRL/ocaml-bwd/issues/new/choose) if some function would have been helpful for your project. We will be happy to see that you find backward lists useful, too!
+Currently, this library is to serve the development of our proof assistants (for example, cooltt), so we include only a tiny collection of functions, and will deprecate unused or ill-designed ones quickly. That said, please [open a GitHub issue](https://github.com/RedPRL/ocaml-bwd/issues/new/choose) if you want some function to be included for your project. We will be happy to make this library useful to you, too!
