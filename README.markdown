@@ -12,6 +12,18 @@ The API is relatively stable.
 
 You need OCaml 4.14.0 or newer to enjoy the [experimental TMC feature](https://www.ocaml.org/manual/tail_mod_cons.html). Otherwise, there will be warnings about incorrect `tailcall` annotations because order versions of OCaml cannot automatically transform some functions into tail-recursive ones.
 
+### OPAM
+
+The package is available in the OPAM repository:
+```sh
+opam install bwd
+```
+
+You can also pin the latest version in development:
+```sh
+opam pin https://github.com/RedPRL/bwd.git
+```
+
 ### Example Code
 
 ```ocaml
