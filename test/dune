@@ -1,0 +1,4 @@
+(test
+ (name TestBwd)
+ (modules ListAsBwd TestBwd)
+ (libraries qcheck-core qcheck-core.runner bwd))
