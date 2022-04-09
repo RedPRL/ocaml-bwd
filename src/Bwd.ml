@@ -174,9 +174,9 @@ struct
       | Emp -> Emp
       | Snoc (xs, x) ->
         if f x then
-          go xs
-        else
           Snoc ((go[@tailcall]) xs, x)
+        else
+          go xs
     in go
 
   let to_list xs =
