@@ -29,6 +29,17 @@ struct
         | Snoc (xs, _), i -> (go[@tailcall]) (xs, i - 1)
       in go (xs, i)
 
+  let nth_opt xs i =
+    if i < 0 then
+      invalid_arg "BwdLabels.nth_opt"
+    else
+      let rec go =
+        function
+        | Emp, _ -> None
+        | Snoc (_, x), 0 -> Some x
+        | Snoc (xs, _), i -> (go[@tailcall]) (xs, i - 1)
+      in go (xs, i)
+
   let append xs ys =
     let rec go =
       function
