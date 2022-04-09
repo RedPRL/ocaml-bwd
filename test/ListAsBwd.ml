@@ -17,9 +17,26 @@ let append xs ys = xs @ ys
 
 let prepend xs ys = xs @ ys
 
-let equal ~eq xs ys = L.equal ~eq (L.rev xs) (L.rev ys)
+let equal ~eq xs ys =
+  let rec go =
+    function
+    | [], [] -> true
+    | x::xs, y::ys -> eq x y && go (xs, ys)
+    | _ -> false
+  in
+  go (List.rev xs, List.rev ys)
 
-let compare ~cmp xs ys = L.compare ~cmp (L.rev xs) (L.rev ys)
+let compare ~cmp xs ys =
+  let rec go =
+    function
+    | [], [] -> 0
+    | _::_, [] -> 1
+    | [], _::_ -> -1
+    | x::xs, y::ys ->
+      let c = cmp x y in
+      if c <> 0 then c else go (xs, ys)
+  in
+  go (List.rev xs, List.rev ys)
 
 let iter ~f xs = L.iter ~f (L.rev xs)
 
