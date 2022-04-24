@@ -133,6 +133,14 @@ struct
         (go[@tailcall]) init xs
     in go init xs
 
+  let iter2 ~f xs ys =
+    let rec go =
+      function
+      | Emp, Emp -> ()
+      | Snoc (xs, x), Snoc (ys, y) -> f x y; go (xs, ys)
+      | _ -> invalid_arg "BwdLabels.iter2"
+    in go (xs, ys)
+
   let fold_right2 ~f xs ys ~init =
     let rec go init =
       function

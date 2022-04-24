@@ -96,6 +96,17 @@ let test_fold_right =
     Q.Gen.(triple (Q.fun2 Q.Observable.int Q.Observable.int int) (list int) int)
     ~print:Q.Print.(triple Q.Fn.print (list int) int)
     (fun (Fun (_, f), xs, init) -> B.fold_right ~f (of_list xs) ~init = L.fold_right ~f xs ~init)
+let test_iter2 =
+  Q.Test.make ~count ~name:"iter2" Q.Gen.(pair (list int) (list int))
+    ~print:Q.Print.(pair (list int) (list int))
+    (fun (l1, l2) ->
+       let calls1 = Stack.create () in
+       let calls2 = Stack.create () in
+       (trap (fun () -> B.iter2 ~f:(fun x y -> Stack.push (x, y) calls1) (of_list l1) (of_list l2))
+        =
+        trap (fun () -> L.iter2 ~f:(fun x y -> Stack.push (x, y) calls2) l1 l2))
+       &&
+       (List.of_seq (Stack.to_seq calls1) = List.of_seq (Stack.to_seq calls2)))
 let test_fold_right2 =
   Q.Test.make ~count ~name:"fold_right2"
     Q.Gen.(quad (Q.fun3 Q.Observable.int Q.Observable.int Q.Observable.int int) (list int) (list int) int)
@@ -161,6 +172,7 @@ let () =
     ; test_filter_map
     ; test_fold_left
     ; test_fold_right
+    ; test_iter2
     ; test_fold_right2
     ; test_for_all
     ; test_exists

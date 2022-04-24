@@ -50,6 +50,10 @@ let fold_left ~f ~init = L.fold_left ~f ~init
 
 let fold_right ~f xs ~init = L.fold_right ~f xs ~init
 
+let iter2 ~f xs ys =
+  try L.iter2 ~f (List.rev xs) (List.rev ys) with
+  | Invalid_argument _ -> invalid_arg "BwdLabels.iter2"
+
 let fold_right2 ~f xs ys ~init =
   try L.fold_right2 ~f xs ys ~init with
   | Invalid_argument _ -> invalid_arg "BwdLabels.fold_right2"

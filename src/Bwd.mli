@@ -37,6 +37,7 @@ sig
 
   (** {1 Iterators on two lists} *)
 
+  val iter2 : f:('a -> 'b -> unit) -> 'a t -> 'b t -> unit
   val fold_right2 : f:('a -> 'b -> 'c -> 'c) -> 'a t -> 'b t -> init:'c -> 'c
 
   (** {1 List scanning} *)
