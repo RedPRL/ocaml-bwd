@@ -4,7 +4,9 @@ type 'a bwd =
 
 module BwdLabels :
 sig
-  (** This module mimics a small part of the {!module:Stdlib.ListLabels} module. *)
+  (** This module mimics a small part of the {!module:Stdlib.ListLabels} module.
+
+      Currently, this library is to serve the development of our proof assistants (for example, {{: https://github.com/RedPRL/cooltt}cooltt} and {{: https://github.com/RedPRL/algaett}algaett}), so we include only a tiny collection of functions, and will deprecate unused or ill-designed ones quickly. That said, please {{: https://github.com/RedPRL/ocaml-bwd/issues/new/choose}open a GitHub issue} if you want some function to be included for your project. We want to make this library useful to you, too! *)
 
   type 'a t = 'a bwd =
     | Emp

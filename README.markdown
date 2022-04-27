@@ -68,4 +68,4 @@ On the other hand, functions in this library (except the general folds) only mov
 
 ### Minimality
 
-Currently, this library is to serve the development of our proof assistants (for example, cooltt), so we include only a tiny collection of functions, and will deprecate unused or ill-designed ones quickly. That said, please [open a GitHub issue](https://github.com/RedPRL/ocaml-bwd/issues/new/choose) if you want some function to be included for your project. We will be happy to make this library useful to you, too!
+Currently, this library is to serve the development of our proof assistants (for example, [cooltt](https://github.com/RedPRL/cooltt) and [algaett](https://github.com/RedPRL/algaett)), so we include only a tiny collection of functions, and will deprecate unused or ill-designed ones quickly. That said, please [open a GitHub issue](https://github.com/RedPRL/ocaml-bwd/issues/new/choose) if you want some function to be included for your project. We want to make this library useful to you, too!
