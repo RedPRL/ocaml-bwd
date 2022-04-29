@@ -1,6 +1,9 @@
 # 🔙 Backward Lists
 
-This OCaml package defines backward lists that are isomorphic to lists. They are useful when one wishes to give a different type to the lists that are semantically in reverse. In our experience, it is easy to miss `List.rev` or misuse `List.rev_append` when both semantically forward and backward lists are present. With backward lists having a different type, it is impossible to make those mistakes.
+This OCaml package defines backward lists that are isomorphic to lists.
+They are useful when one wishes to give a different type to the lists that are semantically in reverse.
+In our experience, it is easy to miss `List.rev` or misuse `List.rev_append` when both semantically forward and backward lists are present.
+With backward lists having a different type, it is impossible to make those mistakes.
 
 ## Stability
 
@@ -30,25 +33,26 @@ opam pin https://github.com/RedPRL/bwd.git
 open Bwd
 open BwdNotation
 
-(* `Emp` is the empty list and `#<` is snoc (cons in reverse).
+(* [Emp] is the empty list and [#<] is snoc (cons in reverse).
    The following expression gives the backward list corresponding to [1; 2; 3]. *)
 let b1 : int bwd = Emp #< 1 #< 2 #< 3
 
-(* The library has a few common functions for backward lists.
-   The following expression gives the backward list corresponding to [2; 3; 4]. *)
+(* The module [Bwd] is similar to the standard [List] but for backward lists.
+   It has most functions you would expect. For example, the following expression
+   gives the backward list corresponding to [2; 3; 4]. *)
 let b2 : int bwd = Bwd.map (fun x -> x + 1) b1
 
-(* Same as above, but using [BwdLabels] that mimics [ListLabels]. *)
+(* Same as above, but using [BwdLabels] that mimics [ListLabels] instead. *)
 let b2' : int bwd = BwdLabels.map ~f:(fun x -> x + 1) b1
 
-(* bwd yoga 1: `<><` for moving elements from a forward list on the right
+(* bwd yoga 1: [<><] for moving elements from a forward list on the right
    to a backward list on the left. The notation was inspired by Conor McBride.
-   The following expression gives the backward list corresponding to [1; 2; 3; 4; 5; 6]. *)
+   The following gives the backward list corresponding to [1; 2; 3; 4; 5; 6]. *)
 let b3 : int bwd = b1 <>< [4; 5; 6]
 
-(* bwd yoga 2: `<>>` for moving elements from a backward list on the left
+(* bwd yoga 2: [<>>] for moving elements from a backward list on the left
    to a forward list on the right. The notation was inspired by Conor McBride.
-   The following expression gives the forward list [1; 2; 3; 4; 5; 6; 7; 8; 9]. *)
+   The following gives the forward list [1; 2; 3; 4; 5; 6; 7; 8; 9]. *)
 let l4 : int list = b3 <>> [7; 8; 9]
 ```
 
