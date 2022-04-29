@@ -98,7 +98,13 @@ val of_list : 'a list -> 'a t
 module Notation :
 sig
   (** Notation inspired by Conor McBride. *)
+
   val (#<) : 'a t -> 'a -> 'a t
+  (** Alias of {!val:Bwd.snoc}. *)
+
   val (<><) : 'a t -> 'a list -> 'a t
+  (** Alias of {!val:Bwd.append}. *)
+
   val (<>>) : 'a t -> 'a list -> 'a list
+  (** Alias of {!val:Bwd.prepend}. *)
 end
