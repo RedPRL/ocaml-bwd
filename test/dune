@@ -1,4 +1,4 @@
 (test
- (name TestBwd)
- (modules ListAsBwd TestBwd)
+ (name TestBwdLabels)
+ (modules ListAsBwdLabels TestBwdLabels)
  (libraries qcheck-core qcheck-core.runner bwd))

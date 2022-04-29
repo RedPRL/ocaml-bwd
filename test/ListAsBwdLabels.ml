@@ -6,12 +6,12 @@ let snoc l x = l @ [x]
 
 let nth xs i =
   try L.nth (L.rev xs) i with
-  | Failure _ -> failwith "BwdLabels.nth"
-  | Invalid_argument _ -> invalid_arg "BwdLabels.nth"
+  | Failure _ -> failwith "Bwd.nth"
+  | Invalid_argument _ -> invalid_arg "Bwd.nth"
 
 let nth_opt xs i =
   try L.nth_opt (L.rev xs) i with
-  | Invalid_argument _ -> invalid_arg "BwdLabels.nth"
+  | Invalid_argument _ -> invalid_arg "Bwd.nth"
 
 let append xs ys = xs @ ys
 
@@ -52,11 +52,11 @@ let fold_right ~f xs ~init = L.fold_right ~f xs ~init
 
 let iter2 ~f xs ys =
   try L.iter2 ~f (List.rev xs) (List.rev ys) with
-  | Invalid_argument _ -> invalid_arg "BwdLabels.iter2"
+  | Invalid_argument _ -> invalid_arg "Bwd.iter2"
 
 let fold_right2 ~f xs ys ~init =
   try L.fold_right2 ~f xs ys ~init with
-  | Invalid_argument _ -> invalid_arg "BwdLabels.fold_right2"
+  | Invalid_argument _ -> invalid_arg "Bwd.fold_right2"
 
 let for_all ~f xs = L.for_all ~f (L.rev xs)
 

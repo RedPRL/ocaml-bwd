@@ -1,7 +1,7 @@
 open StdLabels
 module B = Bwd.BwdLabels
 module BN = Bwd.BwdNotation
-module L = ListAsBwd
+module L = ListAsBwdLabels
 module Q = QCheck2
 
 let of_list =
