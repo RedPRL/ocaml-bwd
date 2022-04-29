@@ -1,7 +1,7 @@
 (**
-   This module mimics the {!module:Stdlib.List} module.
+   This module is similar to {!module:Stdlib.List} but for backward lists.
 
-   This module mostly follows the design of {!module:Stdlib.List}.
+   Notes on the discrepancies with {!module:Stdlib.List}:
    {ul
    {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}
    {- A new function {!val:prepend} was added as the {i forward} version of {!val:append}.}

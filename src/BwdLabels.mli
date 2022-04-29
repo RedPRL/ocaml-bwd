@@ -1,7 +1,7 @@
 (**
-   This module mimics the {!module:Stdlib.ListLabels} module.
+   This module is similar to {!module:Stdlib.ListLabels} but for backward lists.
 
-   This module mostly follows the design of {!module:Stdlib.ListLabels}.
+   Notes on the discrepancies with {!module:Stdlib.ListLabels}:
    {ul
    {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}
    {- A new function {!val:prepend} was added as the {i forward} version of {!val:append}.}
