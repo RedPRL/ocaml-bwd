@@ -17,7 +17,7 @@ depends: [
   "dune" {>= "2.0"}
   "ocaml" {>= "4.12"}
   "qcheck-core" {>= "0.18" & with-test}
-  "odoc" {with-doc}
+  "odoc" {>= "2.0" & with-doc}
 ]
 build: [
   ["dune" "build" "-p" name "-j" jobs]

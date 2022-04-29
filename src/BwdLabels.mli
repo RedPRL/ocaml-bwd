@@ -1,7 +1,7 @@
 (**
-   This module is similar to {!module:Stdlib.ListLabels} but for backward lists.
+   This module is similar to {!module:ListLabels} but for backward lists.
 
-   Notes on the discrepancies with {!module:Stdlib.ListLabels}:
+   Notes on the discrepancies with {!module:ListLabels}:
    {ul
    {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}
    {- A new function {!val:prepend} was added as the {i forward} version of {!val:append}.}
@@ -34,7 +34,7 @@ val compare : cmp:('a -> 'a -> int) -> 'a t -> 'a t -> int
 (** {1 Iterators}
 
     Note that the iteration direction is from the right to the left,
-    in the opposite direction of the corresponding functions in {!module:Stdlib.ListLabels}.
+    in the opposite direction of the corresponding functions in {!module:ListLabels}.
 *)
 
 val iter : f:('a -> unit) -> 'a t -> unit
@@ -49,7 +49,7 @@ val fold_right : f:('a -> 'b -> 'b) -> 'a t -> init:'b -> 'b
 (** {1 Iterators on two lists}
 
     Note that the iteration direction is from the right to the left,
-    in the opposite direction of the corresponding functions in {!module:Stdlib.ListLabels}.
+    in the opposite direction of the corresponding functions in {!module:ListLabels}.
 *)
 
 val iter2 : f:('a -> 'b -> unit) -> 'a t -> 'b t -> unit
@@ -60,7 +60,7 @@ val fold_right2 : f:('a -> 'b -> 'c -> 'c) -> 'a t -> 'b t -> init:'c -> 'c
 (** {1 List scanning}
 
     Note that the iteration direction is from the right to the left,
-    in the opposite direction of the corresponding functions in {!module:Stdlib.ListLabels}.
+    in the opposite direction of the corresponding functions in {!module:ListLabels}.
 *)
 
 val for_all : f:('a -> bool) -> 'a t -> bool
@@ -73,7 +73,7 @@ val memq : 'a -> set:'a t -> bool
 (** {1 List searching}
 
     Note that the iteration direction is from the right to the left,
-    in the opposite direction of the corresponding functions in {!module:Stdlib.ListLabels}.
+    in the opposite direction of the corresponding functions in {!module:ListLabels}.
 *)
 
 val find : f:('a -> bool) -> 'a t -> 'a

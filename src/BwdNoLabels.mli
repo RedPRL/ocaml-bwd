@@ -1,9 +1,9 @@
 (** @canonical Bwd.Bwd *)
 
 (**
-   This module is similar to {!module:Stdlib.List} but for backward lists.
+   This module is similar to {!module:List} but for backward lists.
 
-   Notes on the discrepancies with {!module:Stdlib.List}:
+   Notes on the discrepancies with {!module:List}:
    {ul
    {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}
    {- A new function {!val:prepend} was added as the {i forward} version of {!val:append}.}
@@ -36,7 +36,7 @@ val compare : ('a -> 'a -> int) -> 'a t -> 'a t -> int
 (** {1 Iterators}
 
     Note that the iteration direction is from the right to the left,
-    in the opposite direction of the corresponding functions in {!module:Stdlib.List}.
+    in the opposite direction of the corresponding functions in {!module:List}.
 *)
 
 val iter : ('a -> unit) -> 'a t -> unit
@@ -51,7 +51,7 @@ val fold_right : ('a -> 'b -> 'b) -> 'a t -> 'b -> 'b
 (** {1 Iterators on two lists}
 
     Note that the iteration direction is from the right to the left,
-    in the opposite direction of the corresponding functions in {!module:Stdlib.List}.
+    in the opposite direction of the corresponding functions in {!module:List}.
 *)
 
 val iter2 : ('a -> 'b -> unit) -> 'a t -> 'b t -> unit
@@ -62,7 +62,7 @@ val fold_right2 : ('a -> 'b -> 'c -> 'c) -> 'a t -> 'b t -> 'c -> 'c
 (** {1 List scanning}
 
     Note that the iteration direction is from the right to the left,
-    in the opposite direction of the corresponding functions in {!module:Stdlib.List}.
+    in the opposite direction of the corresponding functions in {!module:List}.
 *)
 
 val for_all : ('a -> bool) -> 'a t -> bool
@@ -75,7 +75,7 @@ val memq : 'a -> 'a t -> bool
 (** {1 List searching}
 
     Note that the iteration direction is from the right to the left,
-    in the opposite direction of the corresponding functions in {!module:Stdlib.List}.
+    in the opposite direction of the corresponding functions in {!module:List}.
 *)
 
 val find : ('a -> bool) -> 'a t -> 'a
