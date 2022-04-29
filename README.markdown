@@ -54,7 +54,7 @@ let l4 : int list = b3 <>> [7; 8; 9]
 
 ### Documentation
 
-[Here is the API documentation.](https://redprl.org/ocaml-bwd/bwd/)
+[Here is the API documentation.](https://redprl.org/ocaml-bwd/bwd/Bwd/)
 
 ## Philosophy
 
