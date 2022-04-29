@@ -10,6 +10,24 @@ let length xs =
   in
   go 0 xs
 
+let compare_lengths xs ys =
+  let rec go =
+    function
+    | Emp, Emp -> 0
+    | Snoc _, Emp -> 1
+    | Emp, Snoc _ -> -1
+    | Snoc (xs, _), Snoc (ys, _) ->
+      (go[@tailcall]) (xs, ys)
+  in go (xs, ys)
+
+let compare_length_with xs len =
+  let rec go len =
+    function
+    | Emp -> Int.compare 0 len
+    | Snoc (xs, _) ->
+      (go[@tailcall]) (len-1) xs
+  in go len xs
+
 let snoc l x = Snoc (l, x)
 
 let nth xs i =
@@ -78,18 +96,26 @@ let iter f =
       f x; (go[@tailcall]) xs
   in go
 
+let iteri f =
+  let[@tail_mod_cons] rec go i =
+    function
+    | Emp -> ()
+    | Snoc (xs, x) ->
+      f i x; (go[@tailcall]) (i + 1) xs
+  in go 0
+
 let map f =
   let[@tail_mod_cons] rec go =
     function
     | Emp -> Emp
-    | Snoc (xs, x) -> Snoc ((go[@tailcall]) xs, f x)
+    | Snoc (xs, x) -> let y = f x in Snoc ((go[@tailcall]) xs, y)
   in go
 
 let mapi f =
   let[@tail_mod_cons] rec go i =
     function
     | Emp -> Emp
-    | Snoc (xs, x) -> Snoc ((go[@tailcall]) (i + 1) xs, f i x)
+    | Snoc (xs, x) -> let y = f i x in Snoc ((go[@tailcall]) (i + 1) xs, y)
   in
   go 0
 
@@ -111,6 +137,16 @@ let fold_left f init =
       f (go xs) x
   in go
 
+let fold_right_map f xs init =
+  let rec go init =
+    function
+    | Emp -> init, Emp
+    | Snoc (xs, x) ->
+      let init, y = f x init in
+      let z, ys = go init xs in
+      z, Snoc (ys, y)
+  in go init xs
+
 let fold_right f xs init =
   let rec go init =
     function
@@ -126,6 +162,24 @@ let iter2 f xs ys =
     | Emp, Emp -> ()
     | Snoc (xs, x), Snoc (ys, y) -> f x y; go (xs, ys)
     | _ -> invalid_arg "Bwd.iter2"
+  in go (xs, ys)
+
+let map2 f xs ys =
+  let[@tail_mod_cons] rec go =
+    function
+    | Emp, Emp -> Emp
+    | Snoc (xs, x), Snoc (ys, y) ->
+      let z = f x y in Snoc ((go[@tailcall]) (xs, ys), z)
+    | _ -> invalid_arg "Bwd.map2"
+  in go (xs, ys)
+
+let fold_left2 f init xs ys =
+  let rec go =
+    function
+    | Emp, Emp -> init
+    | Snoc (xs, x), Snoc (ys, y) ->
+      f (go (xs, ys)) x y
+    | _ -> invalid_arg "Bwd.fold_left2"
   in go (xs, ys)
 
 let fold_right2 f xs ys init =
@@ -147,6 +201,15 @@ let for_all f =
       f x && (go[@tailcall]) xs
   in go
 
+let for_all2 f xs ys =
+  let rec go =
+    function
+    | Emp, Emp -> true
+    | Snoc (xs, x), Snoc (ys, y) ->
+      f x y && (go[@tailcall]) (xs, ys)
+    | _ -> invalid_arg "Bwd.for_all2"
+  in go (xs, ys)
+
 let exists f =
   let rec go =
     function
@@ -154,6 +217,15 @@ let exists f =
     | Snoc (xs, x) ->
       f x || (go[@tailcall]) xs
   in go
+
+let exists2 f xs ys =
+  let rec go =
+    function
+    | Emp, Emp -> false
+    | Snoc (xs, x), Snoc (ys, y) ->
+      f x y || (go[@tailcall]) (xs, ys)
+    | _ -> invalid_arg "Bwd.exists2"
+  in go (xs, ys)
 
 let mem a set =
   let rec go =
@@ -163,6 +235,40 @@ let mem a set =
       a = x || (go[@tailcall]) xs
   in go set
 
+let memq a set =
+  let rec go =
+    function
+    | Emp -> false
+    | Snoc (xs, x) ->
+      a == x || (go[@tailcall]) xs
+  in go set
+
+let find f =
+  let rec go =
+    function
+    | Emp -> raise Not_found
+    | Snoc (xs, x) ->
+      if f x then x else go xs
+  in go
+
+let find_opt f =
+  let rec go =
+    function
+    | Emp -> None
+    | Snoc (xs, x) ->
+      if f x then Some x else go xs
+  in go
+
+let find_map f =
+  let rec go =
+    function
+    | Emp -> None
+    | Snoc (xs, x) ->
+      match f x with
+      | Some y -> Some y
+      | None -> go xs
+  in go
+
 let filter f =
   let[@tail_mod_cons] rec go =
     function
@@ -171,8 +277,64 @@ let filter f =
       if f x then
         Snoc ((go[@tailcall]) xs, x)
       else
-        go xs
+        (go[@tailcall]) xs
   in go
+
+let find_all f = filter f
+
+let filteri f =
+  let[@tail_mod_cons] rec go i =
+    function
+    | Emp -> Emp
+    | Snoc (xs, x) ->
+      if f i x then
+        Snoc ((go[@tailcall]) (i + 1) xs, x)
+      else
+        (go[@tailcall]) (i + 1) xs
+  in go 0
+
+let partition f =
+  let rec go =
+    function
+    | Emp -> Emp, Emp
+    | Snoc (xs, x) ->
+      if f x then
+        let ys, zs = go xs in
+        Snoc (ys, x), zs
+      else
+        let ys, zs = go xs in
+        ys, Snoc (zs, x)
+  in go
+
+let partition_map f =
+  let rec go =
+    function
+    | Emp -> Emp, Emp
+    | Snoc (xs, x) ->
+      match f x with
+      | Either.Left y ->
+        let ys, zs = go xs in
+        Snoc (ys, y), zs
+      | Either.Right z ->
+        let ys, zs = go xs in
+        ys, Snoc (zs, z)
+  in go
+
+let rec split =
+  function
+  | Emp -> Emp, Emp
+  | Snoc (xys, (x, y)) ->
+    let xs, ys = split xys in
+    Snoc (xs, x), Snoc (ys, y)
+
+let combine xs ys =
+  let[@tail_mod_cons] rec go =
+    function
+    | Emp, Emp -> Emp
+    | Snoc (xs, x), Snoc (ys, y) ->
+      Snoc (go (xs, ys), (x, y))
+    | _ -> invalid_arg "Bwd.combine"
+  in go (xs, ys)
 
 let to_list xs =
   prepend xs []

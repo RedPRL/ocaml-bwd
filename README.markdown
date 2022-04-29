@@ -36,7 +36,10 @@ let b1 : int bwd = Emp #< 1 #< 2 #< 3
 
 (* The library has a few common functions for backward lists.
    The following expression gives the backward list corresponding to [2; 3; 4]. *)
-let b2 : int bwd = BwdLabels.map ~f:(fun x -> x + 1) b1
+let b2 : int bwd = Bwd.map (fun x -> x + 1) b1
+
+(* Same as above, but using [BwdLabels] that mimics [ListLabels]. *)
+let b2' : int bwd = BwdLabels.map ~f:(fun x -> x + 1) b1
 
 (* bwd yoga 1: `<><` for moving elements from a forward list on the right
    to a backward list on the left. The notation was inspired by Conor McBride.
@@ -65,7 +68,3 @@ The idea is that the textual order of elements should never change---what's on t
 - `List.rev_append`
 
 On the other hand, functions in this library (except the general folds) only move elements between forward and backward lists without changing their textual order. The yoga of moving elements should ring a bell for people who have implemented normalization by evaluation (NbE). This simple trick of maintaining textual order seems to have prevented many potential bugs in our proof assistants.
-
-### Minimality
-
-Currently, this library is to serve the development of our proof assistants (for example, [cooltt](https://github.com/RedPRL/cooltt) and [algaett](https://github.com/RedPRL/algaett)), so we include only a tiny collection of functions, and will deprecate unused or ill-designed ones quickly. That said, please [open a GitHub issue](https://github.com/RedPRL/ocaml-bwd/issues/new/choose) if you want some function to be included for your project. We want to make this library useful to you, too!
