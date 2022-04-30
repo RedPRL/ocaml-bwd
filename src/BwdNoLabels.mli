@@ -1,8 +1,4 @@
-(** @canonical Bwd.Bwd *)
-
 (**
-   This module is similar to {!module:List} but for backward lists.
-
    Notes on the discrepancies with {!module:List}:
    {ul
    {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}
@@ -13,8 +9,11 @@
 
    Please {{: https://github.com/RedPRL/ocaml-bwd/issues/new/choose}open a GitHub issue} if you want a function to be included.
    We want to make this library useful to you, too!
+
+   @canonical Bwd.Bwd
 *)
 
+(** @canonical Bwd.bwd *)
 type 'a t = 'a BwdDef.bwd =
   | Emp
   | Snoc of 'a t * 'a
@@ -97,16 +96,17 @@ val combine : 'a t -> 'b t -> ('a * 'b) t
 val to_list : 'a t -> 'a list
 val of_list : 'a list -> 'a t
 
+(** {1 Infix notation} *)
+
+(** Notation inspired by Conor McBride. *)
 module Notation :
 sig
-  (** Notation inspired by Conor McBride. *)
-
   val (#<) : 'a t -> 'a -> 'a t
-  (** Alias of {!val:Bwd.snoc}. *)
+  (** An alias of {!val:Bwd.snoc}. *)
 
   val (<><) : 'a t -> 'a list -> 'a t
-  (** Alias of {!val:Bwd.append}. *)
+  (** An alias of {!val:Bwd.append}. *)
 
   val (<>>) : 'a t -> 'a list -> 'a list
-  (** Alias of {!val:Bwd.prepend}. *)
+  (** An alias of {!val:Bwd.prepend}. *)
 end

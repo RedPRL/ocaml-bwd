@@ -1,6 +1,4 @@
 (**
-   This module is similar to {!module:ListLabels} but for backward lists.
-
    Notes on the discrepancies with {!module:ListLabels}:
    {ul
    {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}
@@ -13,6 +11,7 @@
    We want to make this library useful to you, too!
 *)
 
+(** @canonical Bwd.bwd *)
 type 'a t = 'a BwdDef.bwd =
   | Emp
   | Snoc of 'a t * 'a
@@ -95,16 +94,17 @@ val combine : 'a t -> 'b t -> ('a * 'b) t
 val to_list : 'a t -> 'a list
 val of_list : 'a list -> 'a t
 
+(** {1 Infix notation} *)
+
+(** Notation inspired by Conor McBride. *)
 module Notation :
 sig
-  (** Notation inspired by Conor McBride. *)
-
   val (#<) : 'a t -> 'a -> 'a t
-  (** Alias of {!val:Bwd.snoc}. *)
+  (** An alias of {!val:BwdLabels.snoc}. *)
 
   val (<><) : 'a t -> 'a list -> 'a t
-  (** Alias of {!val:Bwd.append}. *)
+  (** An alias of {!val:BwdLabels.append}. *)
 
   val (<>>) : 'a t -> 'a list -> 'a list
-  (** Alias of {!val:Bwd.prepend}. *)
+  (** An alias of {!val:BwdLabels.prepend}. *)
 end
