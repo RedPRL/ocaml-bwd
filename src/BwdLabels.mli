@@ -9,6 +9,8 @@
 
    Please {{: https://github.com/RedPRL/ocaml-bwd/issues/new/choose}open a GitHub issue} if you want a function to be included.
    We want to make this library useful to you, too!
+
+   @canonical Bwd.BwdLabels
 *)
 
 (** @canonical Bwd.bwd *)
