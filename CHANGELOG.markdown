@@ -1,3 +1,14 @@
+# [2.0.0](https://github.com/RedPRL/ocaml-bwd/compare/1.2.0...2.0.0) (2022-05-02)
+
+
+### Features
+
+* add iter2 ([232e1d0](https://github.com/RedPRL/ocaml-bwd/commit/232e1d0048bc289a7c565eb017c664899349acf5))
+* add many functions; remove concat ([7fa35e6](https://github.com/RedPRL/ocaml-bwd/commit/7fa35e65247adbcb45d48dab2f4f3f2ffb2c90bc))
+* provide unlabeled versions ([0c67343](https://github.com/RedPRL/ocaml-bwd/commit/0c673432ff91723085410eedaf78dae5a23b87b1))
+
+
+
 # [1.2.0](https://github.com/RedPRL/ocaml-bwd/compare/1.1.0...1.2.0) (2022-04-09)
 
 
