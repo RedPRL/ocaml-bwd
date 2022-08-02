@@ -1,6 +1,5 @@
 open StdLabels
 module B = Bwd.BwdLabels
-module BN = Bwd.BwdNotation
 module L = ListAsBwdLabels
 module Q = QCheck2
 
@@ -266,15 +265,15 @@ let test_of_list =
 
 let (#<) =
   Q.Test.make ~count ~name:"#<" Q.Gen.(pair (small_list int) int) ~print:Q.Print.(pair (list int) int)
-    (fun (xs, x) -> to_list (BN.(#<) (of_list xs) x) = L.(#<) xs x)
+    (fun (xs, x) -> to_list (B.Infix.(#<) (of_list xs) x) = L.(#<) xs x)
 let (<><) =
   Q.Test.make ~count ~name:"<><" Q.Gen.(pair (small_list int) (small_list int))
     ~print:Q.Print.(pair (list int) (list int))
-    (fun (xs, ys) -> to_list (BN.(<><) (of_list xs) ys) = L.(<><) xs ys)
+    (fun (xs, ys) -> to_list (B.Infix.(<><) (of_list xs) ys) = L.(<><) xs ys)
 let (<>>) =
   Q.Test.make ~count ~name:"<>>" Q.Gen.(pair (small_list int) (small_list int))
     ~print:Q.Print.(pair (list int) (list int))
-    (fun (xs, ys) -> BN.(<>>) (of_list xs) ys = L.(<>>) xs ys)
+    (fun (xs, ys) -> B.Infix.(<>>) (of_list xs) ys = L.(<>>) xs ys)
 
 
 let () =

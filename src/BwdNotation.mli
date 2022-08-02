@@ -1,2 +1,2 @@
-include module type of BwdNoLabels.Notation
+include module type of BwdNoLabels.Infix
 (** @open *)
