@@ -5,9 +5,9 @@ They are useful when one wishes to give a different type to the lists that are s
 In our experience, it is easy to miss `List.rev` or misuse `List.rev_append` when both semantically forward and backward lists are present.
 With backward lists having a different type, it is impossible to make those mistakes.
 
-## Stability
+## API Stability and Documentation
 
-The API is relatively stable.
+The API is relatively stable. [Here is the API documentation.](https://redprl.org/ocaml-bwd/bwd/Bwd/)
 
 ## How to Use It
 
@@ -55,10 +55,6 @@ let b3 : int bwd = b1 <>< [4; 5; 6]
    The following gives the forward list [1; 2; 3; 4; 5; 6; 7; 8; 9]. *)
 let l4 : int list = b3 <>> [7; 8; 9]
 ```
-
-### Documentation
-
-[Here is the API documentation.](https://redprl.org/ocaml-bwd/bwd/Bwd/)
 
 ## Philosophy
 
