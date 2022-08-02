@@ -99,7 +99,7 @@ val of_list : 'a list -> 'a t
 (** {1 Infix notation} *)
 
 (** Notation inspired by Conor McBride. *)
-module Notation :
+module Infix :
 sig
   val (#<) : 'a t -> 'a -> 'a t
   (** An alias of {!val:Bwd.snoc}. *)
@@ -110,3 +110,5 @@ sig
   val (<>>) : 'a t -> 'a list -> 'a list
   (** An alias of {!val:Bwd.prepend}. *)
 end
+
+module Notation : module type of Infix [@@ocaml.alert deprecated "Use Bwd.Infix instead"]

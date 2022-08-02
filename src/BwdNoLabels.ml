@@ -342,9 +342,11 @@ let to_list xs =
 let of_list xs =
   append Emp xs
 
-module Notation =
+module Infix =
 struct
   let (#<) = snoc
   let (<><) = append
   let (<>>) = prepend
 end
+
+module Notation = Infix

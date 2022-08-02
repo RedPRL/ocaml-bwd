@@ -1,1 +1,1 @@
-include BwdNoLabels.Notation
+include BwdNoLabels.Infix

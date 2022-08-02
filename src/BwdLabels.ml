@@ -82,4 +82,6 @@ let to_list xs = BwdNoLabels.to_list xs
 
 let of_list xs = BwdNoLabels.of_list xs
 
-module Notation = BwdNoLabels.Notation
+module Infix = BwdNoLabels.Infix
+
+module Notation = BwdNoLabels.Notation [@alert "-deprecated"]
