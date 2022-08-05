@@ -18,6 +18,5 @@ jobs:
       - uses: RedPRL/actions-ocaml@v2
         with:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}
-          with-test: ${{ matrix.with-test }}
           with-doc: ${{ matrix.with-doc }}
           publish-doc-if-built: ${{ github.ref == 'refs/heads/main' }}
