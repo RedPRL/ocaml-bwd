@@ -111,4 +111,6 @@ sig
   (** An alias of {!val:BwdLabels.prepend}. *)
 end
 
+(**/**)
+
 module Notation : module type of Infix [@@ocaml.alert deprecated "Use Bwd.Infix instead"]
