@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/RedPRL/ocaml-bwd/compare/2.0.0...2.1.0) (2022-08-06)
+
+
+### Bug Fixes
+
+* rename Bwd.Notation to Bwd.Infix ([#8](https://github.com/RedPRL/ocaml-bwd/issues/8)) ([4869bbd](https://github.com/RedPRL/ocaml-bwd/commit/4869bbd9ab8d304d94515428bf54f471fca03181))
+
+
+
 # [2.0.0](https://github.com/RedPRL/ocaml-bwd/compare/1.2.0...2.0.0) (2022-05-02)
 
 
