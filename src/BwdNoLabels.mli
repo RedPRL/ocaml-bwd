@@ -3,7 +3,7 @@
    {ul
    {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}
    {- A new function {!val:prepend} was added as the {i forward} version of {!val:append}.}
-   {- A new module {!module:Notation} was added for the infix notation.}
+   {- A new module {!module:Infix} was added for the infix notation.}
    {- Functions for association lists are currently missing, but might be added later.}
    {- Functions [init], [tl] (as [hd] for lists), [hd] (as [tl] for lists), [merge], [to_seq], and [of_seq] are also missing, but might be added in the future.}}
 

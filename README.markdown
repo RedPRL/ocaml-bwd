@@ -31,7 +31,7 @@ opam pin https://github.com/RedPRL/bwd.git
 
 ```ocaml
 open Bwd
-open BwdNotation
+open Bwd.Infix
 
 (* [Emp] is the empty list and [#<] is snoc (cons in reverse).
    The following expression gives the backward list corresponding to [1; 2; 3]. *)
