@@ -6,6 +6,7 @@
    {- A new module {!module:Infix} was added for the infix notation.}
    {- Functions for association lists are currently missing, but might be added later.}
    {- For the functions involving indices, such as [nth], [nth_opt], [iteri], [mapi], and [filteri], the indices count from the right rather than the left.}
+   {- All iteration functions, such as [iter], [map], [fold_left], [fold_right], [exist], [mem], [find], [filter], and other similar functions, work from the right rather than the left.}
    {- Functions [init], [tl] (as [hd] for lists), [hd] (as [tl] for lists), [merge], [to_seq], and [of_seq] are also missing, but might be added in the future.}}
 
    Please {{: https://github.com/RedPRL/ocaml-bwd/issues/new/choose}open a GitHub issue} if you want a function to be included.
