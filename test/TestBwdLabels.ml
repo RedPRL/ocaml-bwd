@@ -264,14 +264,14 @@ let test_of_list =
     (fun xs -> to_list (B.of_list xs) = L.of_list xs)
 
 let (#<) =
-  Q.Test.make ~count ~name:"#<" Q.Gen.(pair (small_list int) int) ~print:Q.Print.(pair (list int) int)
+  Q.Test.make ~count ~name:"(#<)" Q.Gen.(pair (small_list int) int) ~print:Q.Print.(pair (list int) int)
     (fun (xs, x) -> to_list (B.Infix.(#<) (of_list xs) x) = L.(#<) xs x)
 let (<><) =
-  Q.Test.make ~count ~name:"<><" Q.Gen.(pair (small_list int) (small_list int))
+  Q.Test.make ~count ~name:"(<><)" Q.Gen.(pair (small_list int) (small_list int))
     ~print:Q.Print.(pair (list int) (list int))
     (fun (xs, ys) -> to_list (B.Infix.(<><) (of_list xs) ys) = L.(<><) xs ys)
 let (<>>) =
-  Q.Test.make ~count ~name:"<>>" Q.Gen.(pair (small_list int) (small_list int))
+  Q.Test.make ~count ~name:"(<>>)" Q.Gen.(pair (small_list int) (small_list int))
     ~print:Q.Print.(pair (list int) (list int))
     (fun (xs, ys) -> B.Infix.(<>>) (of_list xs) ys = L.(<>>) xs ys)
 
