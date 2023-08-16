@@ -18,11 +18,13 @@ You need OCaml 4.14.0 or newer to enjoy the [experimental TMC feature](https://w
 ### OPAM
 
 The package is available in the OPAM repository:
+
 ```sh
 opam install bwd
 ```
 
 You can also pin the latest version in development:
+
 ```sh
 opam pin https://github.com/RedPRL/bwd.git
 ```
@@ -33,27 +35,27 @@ opam pin https://github.com/RedPRL/bwd.git
 open Bwd
 open Bwd.Infix
 
-(* [Emp] is the empty list and [#<] is snoc (cons in reverse).
+(* [Emp] is the empty list and [<:] is snoc (cons in reverse).
    The following expression gives the backward list corresponding to [1; 2; 3]. *)
-let b1 : int bwd = Emp #< 1 #< 2 #< 3
+let b1 : int bwd = Emp <: 1 <: 2 <: 3
 
 (* The module [Bwd] is similar to the standard [List] but for backward lists.
    It has most functions you would expect. For example, the following expression
-   gives the backward list corresponding to [2; 3; 4]. *)
-let b2 : int bwd = Bwd.map (fun x -> x + 1) b1
+   gives the backward list corresponding to [4; 5; 6]. *)
+let b2 : int bwd = Bwd.map (fun x -> x + 3) b1
 
 (* Same as above, but using [BwdLabels] that mimics [ListLabels] instead. *)
-let b2' : int bwd = BwdLabels.map ~f:(fun x -> x + 1) b1
+let b2' : int bwd = BwdLabels.map ~f:(fun x -> x + 3) b1
 
-(* bwd yoga 1: [<><] for moving elements from a forward list on the right
+(* bwd yoga 1: [<@] for moving elements from a forward list on the right
    to a backward list on the left. The notation was inspired by Conor McBride.
-   The following gives the backward list corresponding to [1; 2; 3; 4; 5; 6]. *)
-let b3 : int bwd = b1 <>< [4; 5; 6]
+   The following gives the backward list corresponding to [4; 5; 6; 7; 8; 9]. *)
+let b3 : int bwd = b2 <@ [7; 8] <@ [9]
 
-(* bwd yoga 2: [<>>] for moving elements from a backward list on the left
+(* bwd yoga 2: [@>] for moving elements from a backward list on the left
    to a forward list on the right. The notation was inspired by Conor McBride.
-   The following gives the forward list [1; 2; 3; 4; 5; 6; 7; 8; 9]. *)
-let l4 : int list = b3 <>> [7; 8; 9]
+   The following gives the forward list [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]. *)
+let l4 : int list = b1 @> b3 @> [10]
 ```
 
 ## Philosophy

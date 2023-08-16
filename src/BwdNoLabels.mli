@@ -103,13 +103,22 @@ val of_list : 'a list -> 'a t
 (** Notation inspired by Conor McBride. *)
 module Infix :
 sig
-  val (#<) : 'a t -> 'a -> 'a t
+  val (#<) : 'a t -> 'a -> 'a t [@@ocaml.alert deprecated "Use (<:) instead"]
   (** An alias of {!val:Bwd.snoc}. *)
 
-  val (<><) : 'a t -> 'a list -> 'a t
+  val (<><) : 'a t -> 'a list -> 'a t [@@ocaml.alert deprecated "Use (<@) instead"]
   (** An alias of {!val:Bwd.append}. *)
 
-  val (<>>) : 'a t -> 'a list -> 'a list
+  val (<>>) : 'a t -> 'a list -> 'a list [@@ocaml.alert deprecated "Use (@>) instead"]
+  (** An alias of {!val:Bwd.prepend}. *)
+
+  val (<:) : 'a t -> 'a -> 'a t
+  (** An alias of {!val:Bwd.snoc}. *)
+
+  val (<@) : 'a t -> 'a list -> 'a t
+  (** An alias of {!val:Bwd.append}. *)
+
+  val (@>) : 'a t -> 'a list -> 'a list
   (** An alias of {!val:Bwd.prepend}. *)
 end
 

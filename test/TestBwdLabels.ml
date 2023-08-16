@@ -266,14 +266,29 @@ let test_of_list =
 let (#<) =
   Q.Test.make ~count ~name:"(#<)" Q.Gen.(pair (small_list int) int) ~print:Q.Print.(pair (list int) int)
     (fun (xs, x) -> to_list (B.Infix.(#<) (of_list xs) x) = L.(#<) xs x)
+  [@alert "-deprecated"]
 let (<><) =
   Q.Test.make ~count ~name:"(<><)" Q.Gen.(pair (small_list int) (small_list int))
     ~print:Q.Print.(pair (list int) (list int))
     (fun (xs, ys) -> to_list (B.Infix.(<><) (of_list xs) ys) = L.(<><) xs ys)
+  [@alert "-deprecated"]
 let (<>>) =
   Q.Test.make ~count ~name:"(<>>)" Q.Gen.(pair (small_list int) (small_list int))
     ~print:Q.Print.(pair (list int) (list int))
     (fun (xs, ys) -> B.Infix.(<>>) (of_list xs) ys = L.(<>>) xs ys)
+  [@alert "-deprecated"]
+
+let (<:) =
+  Q.Test.make ~count ~name:"(<:)" Q.Gen.(pair (small_list int) int) ~print:Q.Print.(pair (list int) int)
+    (fun (xs, x) -> to_list (B.Infix.(<:) (of_list xs) x) = L.(<:) xs x)
+let (<@) =
+  Q.Test.make ~count ~name:"(<@)" Q.Gen.(pair (small_list int) (small_list int))
+    ~print:Q.Print.(pair (list int) (list int))
+    (fun (xs, ys) -> to_list (B.Infix.(<@) (of_list xs) ys) = L.(<@) xs ys)
+let (@>) =
+  Q.Test.make ~count ~name:"(@>)" Q.Gen.(pair (small_list int) (small_list int))
+    ~print:Q.Print.(pair (list int) (list int))
+    (fun (xs, ys) -> B.Infix.(@>) (of_list xs) ys = L.(@>) xs ys)
 
 
 let () =
@@ -323,4 +338,7 @@ let () =
       (#<);
       (<><);
       (<>>);
+      (<:);
+      (<@);
+      (@>);
     ]

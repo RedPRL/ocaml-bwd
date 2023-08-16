@@ -347,6 +347,9 @@ struct
   let (#<) = snoc
   let (<><) = append
   let (<>>) = prepend
+  let (<:) = snoc
+  let (<@) = append
+  let (@>) = prepend
 end
 
 module Notation = Infix
