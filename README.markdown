@@ -41,21 +41,21 @@ let b1 : int bwd = Emp <: 1 <: 2 <: 3
 
 (* The module [Bwd] is similar to the standard [List] but for backward lists.
    It has most functions you would expect. For example, the following expression
-   gives the backward list corresponding to [4; 5; 6]. *)
-let b2 : int bwd = Bwd.map (fun x -> x + 3) b1
+   gives the backward list corresponding to [2; 3; 4]. *)
+let b2 : int bwd = Bwd.map (fun x -> x + 1) b1
 
 (* Same as above, but using [BwdLabels] that mimics [ListLabels] instead. *)
-let b2' : int bwd = BwdLabels.map ~f:(fun x -> x + 3) b1
+let b2' : int bwd = BwdLabels.map ~f:(fun x -> x + 1) b1
 
 (* bwd yoga 1: [<@] for moving elements from a forward list on the right
    to a backward list on the left. The following gives the backward list
-   corresponding to [4; 5; 6; 7; 8; 9]. *)
-let b3 : int bwd = b2 <@ [7; 8] <@ [9]
+   corresponding to [1; 2; 3; 4; 5; 6]. *)
+let b3 : int bwd = b1 <@ [4; 5; 6]
 
 (* bwd yoga 2: [@>] for moving elements from a backward list on the left
    to a forward list on the right. The following gives the forward list
-   [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]. *)
-let l4 : int list = b1 @> b3 @> [10]
+   [1; 2; 3; 4; 5; 6; 7; 8; 9]. *)
+let l4 : int list = b3 @> [7; 8; 9]
 ```
 
 ## Philosophy
