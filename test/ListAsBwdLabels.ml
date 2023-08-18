@@ -108,3 +108,7 @@ let of_list xs = xs
 let (#<) xs x = snoc xs x
 let (<>>) xs ys = prepend xs ys
 let (<><) xs ys = append xs ys
+
+let (<:) xs x = snoc xs x
+let (<@) xs ys = append xs ys
+let (@>) xs ys = prepend xs ys
