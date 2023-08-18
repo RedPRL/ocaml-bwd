@@ -100,26 +100,44 @@ val of_list : 'a list -> 'a t
 
 (** {1 Infix notation} *)
 
-(** Notation inspired by Conor McBride. *)
 module Infix :
 sig
-  val (#<) : 'a t -> 'a -> 'a t [@@ocaml.alert deprecated "Use (<:) instead"]
-  (** An alias of {!val:Bwd.snoc}. *)
-
-  val (<><) : 'a t -> 'a list -> 'a t [@@ocaml.alert deprecated "Use (<@) instead"]
-  (** An alias of {!val:Bwd.append}. *)
-
-  val (<>>) : 'a t -> 'a list -> 'a list [@@ocaml.alert deprecated "Use (@>) instead"]
-  (** An alias of {!val:Bwd.prepend}. *)
+  (** {1 Infix notation} *)
 
   val (<:) : 'a t -> 'a -> 'a t
-  (** An alias of {!val:Bwd.snoc}. *)
+  (** An alias of {!val:Bwd.snoc}.
+
+      @since 2.2.0 *)
 
   val (<@) : 'a t -> 'a list -> 'a t
-  (** An alias of {!val:Bwd.append}. *)
+  (** An alias of {!val:Bwd.append}.
+
+      @since 2.2.0 *)
 
   val (@>) : 'a t -> 'a list -> 'a list
-  (** An alias of {!val:Bwd.prepend}. *)
+  (** An alias of {!val:Bwd.prepend}.
+
+      @since 2.2.0 *)
+
+  (** {1 Deprecated infix notation} *)
+
+  val (#<) : 'a t -> 'a -> 'a t
+  [@@ocaml.alert deprecated "Use (<:) instead"]
+  (** An alias of {!val:Bwd.snoc}.
+
+      @deprecated Use [(<:)] *)
+
+  val (<><) : 'a t -> 'a list -> 'a t
+  [@@ocaml.alert deprecated "Use (<@) instead"]
+  (** An alias of {!val:Bwd.append}.
+
+      @deprecated Use [(<@)] *)
+
+  val (<>>) : 'a t -> 'a list -> 'a list
+  [@@ocaml.alert deprecated "Use (@>) instead"]
+  (** An alias of {!val:Bwd.prepend}.
+
+      @deprecated Use [(@>)] *)
 end
 
 (**/**)

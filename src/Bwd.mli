@@ -10,5 +10,5 @@ module BwdLabels : module type of BwdLabels
 
 (**/**)
 
-(** An alias of {!module:Bwd.Notation} for infix notation. *)
+(** An alias of {!module:Bwd.Infix} for infix notation. *)
 module BwdNotation : module type of BwdNotation [@@ocaml.alert deprecated "Use Bwd.Infix instead"]
