@@ -48,13 +48,13 @@ let b2 : int bwd = Bwd.map (fun x -> x + 3) b1
 let b2' : int bwd = BwdLabels.map ~f:(fun x -> x + 3) b1
 
 (* bwd yoga 1: [<@] for moving elements from a forward list on the right
-   to a backward list on the left. The notation was inspired by Conor McBride.
-   The following gives the backward list corresponding to [4; 5; 6; 7; 8; 9]. *)
+   to a backward list on the left. The following gives the backward list
+   corresponding to [4; 5; 6; 7; 8; 9]. *)
 let b3 : int bwd = b2 <@ [7; 8] <@ [9]
 
 (* bwd yoga 2: [@>] for moving elements from a backward list on the left
-   to a forward list on the right. The notation was inspired by Conor McBride.
-   The following gives the forward list [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]. *)
+   to a forward list on the right. The following gives the forward list
+   [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]. *)
 let l4 : int list = b1 @> b3 @> [10]
 ```
 
