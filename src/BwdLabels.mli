@@ -10,8 +10,8 @@
       {ul
       {- [cons] was replaced by {!val:snoc}.}
       {- {!val:append} was replaced by a new version that performs the "textual order yoga".}
-      {- The indices count from the right rather than the left:
-         {!val:nth}, {!val:nth_opt}, {!val:iteri}, {!val:mapi}, and {!val:filteri}.}
+      {- All indices count from the right rather than the left:
+         {!val:nth}, {!val:nth_opt}, {!val:init}, {!val:iteri}, {!val:mapi}, and {!val:filteri}.}
       {- All iteration functions work from the right rather than the left:
          {!val:iter}, {!val:map}, {!val:fold_left}, {!val:fold_right}, {!val:exists}, {!val:mem},
          {!val:find}, {!val:filter}, and other similar functions.}}}
@@ -41,6 +41,7 @@ val compare_length_with : 'a t -> len:int -> int
 val snoc : 'a t -> 'a -> 'a t
 val nth : 'a t -> int -> 'a
 val nth_opt : 'a t -> int -> 'a option
+val init : len:int -> f:(int -> 'a) -> 'a t
 val append : 'a t -> 'a list -> 'a t
 val prepend : 'a t -> 'a list -> 'a list
 
