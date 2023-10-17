@@ -1,13 +1,28 @@
 (**
    Notes on the discrepancies with {!module:ListLabels}:
    {ul
-   {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}
-   {- A new function {!val:prepend} was added as the {i forward} version of {!val:append}.}
-   {- A new module {!module:Infix} was added for the infix notation.}
-   {- Functions for association lists are currently missing, but might be added later.}
-   {- For the functions involving indices, such as [nth], [nth_opt], [iteri], [mapi], and [filteri], the indices count from the right rather than the left.}
-   {- All iteration functions, such as [iter], [map], [fold_left], [fold_right], [exist], [mem], [find], [filter], and other similar functions, work from the right rather than the left.}
-   {- Functions [init], [tl] (as [hd] for lists), [hd] (as [tl] for lists), [merge], [to_seq], and [of_seq] are also missing, but might be added in the future.}}
+   {- New:
+      {ul
+      {- {!val:prepend} was added as the {i forward} version of {!val:append}.}
+      {- {!val:to_list} and {!val:of_list} were added for conversions between standard lists.}
+      {- {!module:Infix} was added for the infix notation.}}}
+   {- Changed:
+      {ul
+      {- [cons] was replaced by {!val:snoc}.}
+      {- {!val:append} was replaced by a new version that performs the "textual order yoga".}
+      {- The indices count from the right rather than the left:
+         {!val:nth}, {!val:nth_opt}, {!val:iteri}, {!val:mapi}, and {!val:filteri}.}
+      {- All iteration functions work from the right rather than the left:
+         {!val:iter}, {!val:map}, {!val:fold_left}, {!val:fold_right}, {!val:exists}, {!val:mem},
+         {!val:find}, {!val:filter}, and other similar functions.}}}
+   {- Forbidden:
+     {ul
+     {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}}}
+   {- Missing but may be added in the future:
+      {ul
+      {- [init], [tl] (as [hd] for lists), [hd] (as [tl] for lists), [concat], [flatten], [concat_map].}
+      {- Functions related to association lists.}
+      {- Functions related to sorting.}}}}
 
    Please {{: https://github.com/RedPRL/ocaml-bwd/issues/new/choose}open a GitHub issue} if you want a function to be included.
    We want to make this library useful to you, too!
