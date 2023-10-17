@@ -2,85 +2,85 @@ type 'a t = 'a BwdDef.bwd =
   | Emp
   | Snoc of 'a t * 'a
 
-let length xs = BwdNoLabels.length xs
+let length = BwdNoLabels.length
 
-let compare_lengths xs ys = BwdNoLabels.compare_lengths xs ys
+let compare_lengths = BwdNoLabels.compare_lengths
 
-let compare_length_with xs ~len = BwdNoLabels.compare_length_with xs len
+let[@inline] compare_length_with xs ~len = BwdNoLabels.compare_length_with xs len
 
-let snoc l x = BwdNoLabels.snoc l x
+let snoc = BwdNoLabels.snoc
 
-let nth xs i = BwdNoLabels.nth xs i
+let nth = BwdNoLabels.nth
 
-let nth_opt xs i = BwdNoLabels.nth_opt xs i
+let nth_opt = BwdNoLabels.nth_opt
 
-let append xs ys = BwdNoLabels.append xs ys
+let append = BwdNoLabels.append
 
-let prepend xs ys = BwdNoLabels.prepend xs ys
+let prepend = BwdNoLabels.prepend
 
-let equal ~eq xs ys = BwdNoLabels.equal eq xs ys
+let[@inline] equal ~eq xs ys = BwdNoLabels.equal eq xs ys
 
-let compare ~cmp xs ys = BwdNoLabels.compare cmp xs ys
+let[@inline] compare ~cmp xs ys = BwdNoLabels.compare cmp xs ys
 
-let iter ~f = BwdNoLabels.iter f
+let[@inline] iter ~f = BwdNoLabels.iter f
 
-let iteri ~f = BwdNoLabels.iteri f
+let[@inline] iteri ~f = BwdNoLabels.iteri f
 
-let map ~f = BwdNoLabels.map f
+let[@inline] map ~f = BwdNoLabels.map f
 
-let mapi ~f = BwdNoLabels.mapi f
+let[@inline] mapi ~f = BwdNoLabels.mapi f
 
-let filter_map ~f = BwdNoLabels.filter_map f
+let[@inline] filter_map ~f = BwdNoLabels.filter_map f
 
-let fold_left ~f ~init = BwdNoLabels.fold_left f init
+let[@inline] fold_left ~f ~init = BwdNoLabels.fold_left f init
 
-let fold_right_map ~f xs ~init = BwdNoLabels.fold_right_map f xs init
+let[@inline] fold_right_map ~f xs ~init = BwdNoLabels.fold_right_map f xs init
 
-let fold_right ~f xs ~init = BwdNoLabels.fold_right f xs init
+let[@inline] fold_right ~f xs ~init = BwdNoLabels.fold_right f xs init
 
-let iter2 ~f xs ys = BwdNoLabels.iter2 f xs ys
+let[@inline] iter2 ~f xs ys = BwdNoLabels.iter2 f xs ys
 
-let map2 ~f xs ys = BwdNoLabels.map2 f xs ys
+let[@inline] map2 ~f xs ys = BwdNoLabels.map2 f xs ys
 
-let fold_left2 ~f ~init = BwdNoLabels.fold_left2 f init
+let[@inline] fold_left2 ~f ~init = BwdNoLabels.fold_left2 f init
 
-let fold_right2 ~f xs ys ~init = BwdNoLabels.fold_right2 f xs ys init
+let[@inline] fold_right2 ~f xs ys ~init = BwdNoLabels.fold_right2 f xs ys init
 
-let for_all ~f = BwdNoLabels.for_all f
+let[@inline] for_all ~f = BwdNoLabels.for_all f
 
-let for_all2 ~f = BwdNoLabels.for_all2 f
+let[@inline] for_all2 ~f = BwdNoLabels.for_all2 f
 
-let exists ~f = BwdNoLabels.exists f
+let[@inline] exists ~f = BwdNoLabels.exists f
 
-let exists2 ~f = BwdNoLabels.exists2 f
+let[@inline] exists2 ~f = BwdNoLabels.exists2 f
 
-let mem a ~set = BwdNoLabels.mem a set
+let[@inline] mem a ~set = BwdNoLabels.mem a set
 
-let memq a ~set = BwdNoLabels.memq a set
+let[@inline] memq a ~set = BwdNoLabels.memq a set
 
-let find ~f = BwdNoLabels.find f
+let[@inline] find ~f = BwdNoLabels.find f
 
-let find_opt ~f = BwdNoLabels.find_opt f
+let[@inline] find_opt ~f = BwdNoLabels.find_opt f
 
-let find_map ~f = BwdNoLabels.find_map f
+let[@inline] find_map ~f = BwdNoLabels.find_map f
 
-let filter ~f = BwdNoLabels.filter f
+let[@inline] filter ~f = BwdNoLabels.filter f
 
-let find_all ~f = BwdNoLabels.find_all f
+let[@inline] find_all ~f = BwdNoLabels.find_all f
 
-let filteri ~f = BwdNoLabels.filteri f
+let[@inline] filteri ~f = BwdNoLabels.filteri f
 
-let partition ~f = BwdNoLabels.partition f
+let[@inline] partition ~f = BwdNoLabels.partition f
 
-let partition_map ~f = BwdNoLabels.partition_map f
+let[@inline] partition_map ~f = BwdNoLabels.partition_map f
 
-let split xs = BwdNoLabels.split xs
+let split = BwdNoLabels.split
 
-let combine xs ys = BwdNoLabels.combine xs ys
+let combine = BwdNoLabels.combine
 
-let to_list xs = BwdNoLabels.to_list xs
+let to_list = BwdNoLabels.to_list
 
-let of_list xs = BwdNoLabels.of_list xs
+let of_list = BwdNoLabels.of_list
 
 module Infix = BwdNoLabels.Infix
 
