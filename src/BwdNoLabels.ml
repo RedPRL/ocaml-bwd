@@ -68,6 +68,22 @@ let prepend xs ys =
       (go[@tailcall]) (xs, x :: ys)
   in go (xs, ys)
 
+let concat bs =
+  let[@tail_mod_cons] rec go bs =
+    function
+    | Emp ->
+      begin
+        match bs with
+        | Emp -> Emp
+        | Snoc (bs, b) -> (go[@tailcall]) bs b
+      end
+    | Snoc (xs, x) ->
+      Snoc ((go[@tailcall]) bs xs, x)
+  in
+  go bs Emp
+
+let flatten = concat
+
 let equal eq xs ys =
   let rec go =
     function

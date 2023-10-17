@@ -18,6 +18,10 @@ let append = BwdNoLabels.append
 
 let prepend = BwdNoLabels.prepend
 
+let concat = BwdNoLabels.concat
+
+let flatten = BwdNoLabels.flatten
+
 let[@inline] equal ~eq xs ys = BwdNoLabels.equal eq xs ys
 
 let[@inline] compare ~cmp xs ys = BwdNoLabels.compare cmp xs ys

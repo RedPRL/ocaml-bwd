@@ -43,6 +43,8 @@ val nth : 'a t -> int -> 'a
 val nth_opt : 'a t -> int -> 'a option
 val append : 'a t -> 'a list -> 'a t
 val prepend : 'a t -> 'a list -> 'a list
+val concat : 'a t t -> 'a t
+val flatten : 'a t t -> 'a t
 
 (** {1 Comparison} *)
 

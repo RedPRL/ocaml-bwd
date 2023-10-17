@@ -21,6 +21,10 @@ let append xs ys = xs @ ys
 
 let prepend xs ys = xs @ ys
 
+let concat = List.concat
+
+let flatten = List.flatten
+
 let equal ~eq xs ys = L.equal ~eq (L.rev xs) (L.rev ys)
 
 let compare ~cmp xs ys = L.compare ~cmp (L.rev xs) (L.rev ys)

@@ -61,6 +61,14 @@ let test_prepend =
   Q.Test.make ~count ~name:"prepend" Q.Gen.(pair (small_list int) (small_list int))
     ~print:Q.Print.(pair (list int) (list int))
     (fun (xs, ys) -> B.prepend (of_list xs) ys = L.prepend xs ys)
+let test_concat =
+  Q.Test.make ~count ~name:"concat" Q.Gen.(small_list (small_list int))
+    ~print:Q.Print.(list (list int))
+    (fun ls -> to_list (B.concat (of_list (List.map ~f:of_list ls))) = L.concat ls)
+let test_flatten =
+  Q.Test.make ~count ~name:"flatten" Q.Gen.(small_list (small_list int))
+    ~print:Q.Print.(list (list int))
+    (fun ls -> to_list (B.flatten (of_list (List.map ~f:of_list ls))) = L.flatten ls)
 let test_equal =
   Q.Test.make ~count ~name:"equal"
     Q.Gen.(triple (Q.fun2 Q.Observable.int Q.Observable.int bool) (small_list small_int) (small_list small_int))
@@ -301,6 +309,8 @@ let () =
       test_nth_opt;
       test_append;
       test_prepend;
+      test_concat;
+      test_flatten;
       test_equal;
       test_compare;
       test_iter;
