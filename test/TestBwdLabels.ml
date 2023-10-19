@@ -31,7 +31,7 @@ let test_compare_lengths =
     (fun (xs, ys) -> B.compare_lengths (of_list xs) (of_list ys) = L.compare_lengths xs ys)
 let test_compare_length_with =
   Q.Test.make ~count ~name:"compare_length_with"
-    Q.Gen.(pair (small_list unit) (small_int))
+    Q.Gen.(pair (small_list unit) (small_signed_int))
     ~print:Q.Print.(pair (list unit) int)
     (fun (xs, len) -> B.compare_length_with (of_list xs) ~len = L.compare_length_with xs ~len)
 let test_snoc =
@@ -39,7 +39,7 @@ let test_snoc =
     (fun (xs, x) -> to_list (B.snoc (of_list xs) x) = L.snoc xs x)
 let test_nth =
   Q.Test.make ~count ~name:"nth"
-    Q.Gen.(pair (small_list int) small_int)
+    Q.Gen.(pair (small_list int) small_signed_int)
     ~print:Q.Print.(pair (list int) int)
     (fun (xs, i) ->
        trap (fun () -> B.nth (of_list xs) i)
@@ -47,7 +47,7 @@ let test_nth =
        trap (fun () -> L.nth xs i))
 let test_nth_opt =
   Q.Test.make ~count ~name:"nth_opt"
-    Q.Gen.(pair (small_list int) small_int)
+    Q.Gen.(pair (small_list int) small_signed_int)
     ~print:Q.Print.(pair (list int) int)
     (fun (xs, i) ->
        trap (fun () -> B.nth_opt (of_list xs) i)
@@ -63,12 +63,12 @@ let test_prepend =
     (fun (xs, ys) -> B.prepend (of_list xs) ys = L.prepend xs ys)
 let test_equal =
   Q.Test.make ~count ~name:"equal"
-    Q.Gen.(triple (Q.fun2 Q.Observable.int Q.Observable.int bool) (small_list small_int) (small_list small_int))
+    Q.Gen.(triple (Q.fun2 Q.Observable.int Q.Observable.int bool) (small_list small_nat) (small_list small_nat))
     ~print:Q.Print.(triple Q.Fn.print (list int) (list int))
     (fun (Fun (_, eq), xs, ys) -> B.equal ~eq (of_list xs) (of_list ys) = L.equal ~eq xs ys)
 let test_compare =
   Q.Test.make ~count ~name:"compare"
-    Q.Gen.(triple (Q.fun2 Q.Observable.int Q.Observable.int int) (small_list small_int) (small_list small_int))
+    Q.Gen.(triple (Q.fun2 Q.Observable.int Q.Observable.int int) (small_list small_nat) (small_list small_nat))
     ~print:Q.Print.(triple Q.Fn.print (list int) (list int))
     (fun (Fun (_, cmp), xs, ys) -> B.compare ~cmp (of_list xs) (of_list ys) = L.compare ~cmp xs ys)
 let test_iter =
@@ -185,12 +185,12 @@ let test_exists2 =
        trap (fun () -> L.exists2 ~f xs ys))
 let test_mem =
   Q.Test.make ~count ~name:"mem"
-    Q.Gen.(pair small_int (small_list small_int))
+    Q.Gen.(pair small_nat (small_list small_nat))
     ~print:Q.Print.(pair int (list int))
     (fun (a, set) -> B.mem a ~set:(of_list set) = L.mem a ~set)
 let test_memq =
   Q.Test.make ~count ~name:"memq"
-    Q.Gen.(pair (opt small_int) (small_list (opt small_int))) (* use [int option] to test physical equality *)
+    Q.Gen.(pair (opt small_nat) (small_list (opt small_nat))) (* use [int option] to test physical equality *)
     ~print:Q.Print.(pair (option int) (list (option int)))
     (fun (a, set) -> B.memq a ~set:(of_list set) = L.memq a ~set)
 let test_find =

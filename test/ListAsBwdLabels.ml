@@ -15,7 +15,7 @@ let nth xs i =
 
 let nth_opt xs i =
   try L.nth_opt (L.rev xs) i with
-  | Invalid_argument _ -> invalid_arg "Bwd.nth"
+  | Invalid_argument _ -> invalid_arg "Bwd.nth_opt"
 
 let append xs ys = xs @ ys
 
