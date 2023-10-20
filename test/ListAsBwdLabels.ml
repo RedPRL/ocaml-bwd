@@ -17,6 +17,10 @@ let nth_opt xs i =
   try L.nth_opt (L.rev xs) i with
   | Invalid_argument _ -> invalid_arg "Bwd.nth_opt"
 
+let init ~len ~f =
+  try L.init ~len ~f:(fun i -> f ((len-1) - i)) with
+  | Invalid_argument _ -> invalid_arg "Bwd.init"
+
 let append xs ys = xs @ ys
 
 let prepend xs ys = xs @ ys

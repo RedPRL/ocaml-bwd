@@ -52,6 +52,17 @@ let nth_opt xs i =
       | Snoc (xs, _), i -> (go[@tailcall]) (xs, i - 1)
     in go (xs, i)
 
+let init len f =
+  if len < 0 then invalid_arg "Bwd.init"
+  else
+    let[@tail_mod_cons] rec go i =
+      if i >= len then Emp
+      else
+        let v = f i in
+        Snoc ((go[@tailcall]) (i+1), v)
+    in
+    go 0
+
 let append xs ys =
   let rec go =
     function

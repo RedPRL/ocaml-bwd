@@ -53,6 +53,11 @@ let test_nth_opt =
        trap (fun () -> B.nth_opt (of_list xs) i)
        =
        trap (fun () -> L.nth_opt xs i))
+let test_init =
+  Q.Test.make ~count ~name:"init"
+    Q.Gen.(pair small_signed_int (Q.fun1 Q.Observable.int (opt int)))
+    ~print:Q.Print.(pair int Q.Fn.print)
+    (fun (len, Fun (_, f)) -> trap (fun () -> to_list (B.init ~len ~f)) = trap (fun () -> L.init ~len ~f))
 let test_append =
   Q.Test.make ~count ~name:"append" Q.Gen.(pair (small_list int) (small_list int))
     ~print:Q.Print.(pair (list int) (list int))
@@ -299,6 +304,7 @@ let () =
       test_snoc;
       test_nth;
       test_nth_opt;
+      test_init;
       test_append;
       test_prepend;
       test_equal;
