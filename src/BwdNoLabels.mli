@@ -20,7 +20,7 @@
      {- Functions [rev], [rev_append], [rev_map], and [rev_map2] will {i never} be included.}}}
    {- Missing but may be added in the future:
       {ul
-      {- [init], [tl] (as [hd] for lists), [hd] (as [tl] for lists), [concat], [flatten], [concat_map].}
+      {- [tl] (as [hd] for lists), [hd] (as [tl] for lists), [concat], [flatten], [concat_map].}
       {- Functions related to association lists.}
       {- Functions related to sorting.}
       {- Conversion from/to sequences.}}}}
