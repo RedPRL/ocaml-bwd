@@ -38,6 +38,7 @@ type 'a t = 'a BwdDef.bwd =
 val length : 'a t -> int
 val compare_lengths : 'a t -> 'a t -> int
 val compare_length_with : 'a t -> int -> int
+val is_empty : 'a t -> bool
 val snoc : 'a t -> 'a -> 'a t
 val nth : 'a t -> int -> 'a
 val nth_opt : 'a t -> int -> 'a option
@@ -97,7 +98,9 @@ val memq : 'a -> 'a t -> bool
 
 val find : ('a -> bool) -> 'a t -> 'a
 val find_opt : ('a -> bool) -> 'a t -> 'a option
+val find_index : ('a -> bool) -> 'a t -> int option
 val find_map : ('a -> 'b option) -> 'a t -> 'b option
+val find_mapi : (int -> 'a -> 'b option) -> 'a t -> 'b option
 val filter : ('a -> bool) -> 'a t -> 'a t
 val find_all : ('a -> bool) -> 'a t -> 'a t
 val filteri : (int -> 'a -> bool) -> 'a t -> 'a t

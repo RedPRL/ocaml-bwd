@@ -28,6 +28,8 @@ let compare_length_with xs len =
       (go[@tailcall]) (len-1) xs
   in go len xs
 
+let is_empty = function Emp -> true | _ -> false
+
 let snoc l x = Snoc (l, x)
 
 let nth xs i =
@@ -270,15 +272,33 @@ let find_opt f =
       if f x then Some x else go xs
   in go
 
+let find_index f =
+  let rec go i =
+    function
+    | Emp -> None
+    | Snoc (xs, x) ->
+      if f x then Some i else go (i+1) xs
+  in go 0
+
 let find_map f =
   let rec go =
     function
     | Emp -> None
     | Snoc (xs, x) ->
       match f x with
-      | Some y -> Some y
+      | Some _ as r -> r
       | None -> go xs
   in go
+
+let find_mapi f =
+  let rec go i =
+    function
+    | Emp -> None
+    | Snoc (xs, x) ->
+      match f i x with
+      | Some _ as r -> r
+      | None -> go (i+1) xs
+  in go 0
 
 let filter f =
   let[@tail_mod_cons] rec go =

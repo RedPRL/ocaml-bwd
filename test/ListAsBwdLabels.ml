@@ -6,6 +6,8 @@ let compare_lengths = L.compare_lengths
 
 let compare_length_with = L.compare_length_with
 
+let is_empty l = l = []
+
 let snoc l x = l @ [x]
 
 let nth xs i =
@@ -83,7 +85,11 @@ let find ~f xs = L.find ~f (L.rev xs)
 
 let find_opt ~f xs = L.find_opt ~f (L.rev xs)
 
+let find_index ~f xs = L.find_map ~f:Fun.id (L.mapi ~f:(fun i x -> if f x then Some i else None) (L.rev xs))
+
 let find_map ~f xs = L.find_map ~f (L.rev xs)
+
+let find_mapi ~f xs = L.find_map ~f:Fun.id (L.mapi ~f (L.rev xs))
 
 let filter ~f xs = L.rev (L.filter ~f (L.rev xs))
 
