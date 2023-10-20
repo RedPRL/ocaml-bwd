@@ -8,6 +8,8 @@ let compare_lengths = BwdNoLabels.compare_lengths
 
 let[@inline] compare_length_with xs ~len = BwdNoLabels.compare_length_with xs len
 
+let is_empty = BwdNoLabels.is_empty
+
 let snoc = BwdNoLabels.snoc
 
 let nth = BwdNoLabels.nth

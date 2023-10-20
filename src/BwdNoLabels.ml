@@ -28,6 +28,8 @@ let compare_length_with xs len =
       (go[@tailcall]) (len-1) xs
   in go len xs
 
+let is_empty = function Emp -> true | _ -> false
+
 let snoc l x = Snoc (l, x)
 
 let nth xs i =

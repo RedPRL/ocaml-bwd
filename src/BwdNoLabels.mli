@@ -38,6 +38,7 @@ type 'a t = 'a BwdDef.bwd =
 val length : 'a t -> int
 val compare_lengths : 'a t -> 'a t -> int
 val compare_length_with : 'a t -> int -> int
+val is_empty : 'a t -> bool
 val snoc : 'a t -> 'a -> 'a t
 val nth : 'a t -> int -> 'a
 val nth_opt : 'a t -> int -> 'a option

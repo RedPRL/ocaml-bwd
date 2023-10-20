@@ -6,6 +6,8 @@ let compare_lengths = L.compare_lengths
 
 let compare_length_with = L.compare_length_with
 
+let is_empty l = l = []
+
 let snoc l x = l @ [x]
 
 let nth xs i =

@@ -34,6 +34,11 @@ let test_compare_length_with =
     Q.Gen.(pair (small_list unit) (small_signed_int))
     ~print:Q.Print.(pair (list unit) int)
     (fun (xs, len) -> B.compare_length_with (of_list xs) ~len = L.compare_length_with xs ~len)
+let test_is_empty =
+  Q.Test.make ~count ~name:"is_empty"
+    Q.Gen.(small_list unit)
+    ~print:Q.Print.(list unit)
+    (fun xs -> B.is_empty (of_list xs) = L.is_empty xs)
 let test_snoc =
   Q.Test.make ~count ~name:"snoc" Q.Gen.(pair (small_list int) int) ~print:Q.Print.(pair (list int) int)
     (fun (xs, x) -> to_list (B.snoc (of_list xs) x) = L.snoc xs x)
@@ -301,6 +306,7 @@ let () =
       test_length;
       test_compare_lengths;
       test_compare_length_with;
+      test_is_empty;
       test_snoc;
       test_nth;
       test_nth_opt;
