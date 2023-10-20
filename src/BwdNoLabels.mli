@@ -22,7 +22,8 @@
       {ul
       {- [init], [tl] (as [hd] for lists), [hd] (as [tl] for lists), [concat], [flatten], [concat_map].}
       {- Functions related to association lists.}
-      {- Functions related to sorting.}}}}
+      {- Functions related to sorting.}
+      {- Conversion from/to sequences.}}}}
 
    Please {{: https://github.com/RedPRL/ocaml-bwd/issues/new/choose}open a GitHub issue} if you want a function to be included.
    We want to make this library useful to you, too!
