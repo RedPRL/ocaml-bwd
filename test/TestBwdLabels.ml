@@ -213,11 +213,21 @@ let test_find_opt =
     Q.Gen.(pair (Q.fun1 Q.Observable.int bool) (small_list int))
     ~print:Q.Print.(pair Q.Fn.print (list int))
     (fun (Fun (_, f), xs) -> B.find_opt ~f (of_list xs) = L.find_opt ~f xs)
+let test_find_index =
+  Q.Test.make ~count ~name:"find_index"
+    Q.Gen.(pair (Q.fun1 Q.Observable.int bool) (small_list int))
+    ~print:Q.Print.(pair Q.Fn.print (list int))
+    (fun (Fun (_, f), xs) -> B.find_index ~f (of_list xs) = L.find_index ~f xs)
 let test_find_map =
   Q.Test.make ~count ~name:"find_map"
     Q.Gen.(pair (Q.fun1 Q.Observable.int (opt int)) (small_list int))
     ~print:Q.Print.(pair Q.Fn.print (list int))
     (fun (Fun (_, f), xs) -> B.find_map ~f (of_list xs) = L.find_map ~f xs)
+let test_find_mapi =
+  Q.Test.make ~count ~name:"find_mapi"
+    Q.Gen.(pair (Q.fun2 Q.Observable.int Q.Observable.int (opt int)) (small_list int))
+    ~print:Q.Print.(pair Q.Fn.print (list int))
+    (fun (Fun (_, f), xs) -> B.find_mapi ~f (of_list xs) = L.find_mapi ~f xs)
 let test_filter =
   Q.Test.make ~count ~name:"filter"
     Q.Gen.(pair (Q.fun1 Q.Observable.int bool) (small_list int))
@@ -335,7 +345,9 @@ let () =
       test_memq;
       test_find;
       test_find_opt;
+      test_find_index;
       test_find_map;
+      test_find_mapi;
       test_filter;
       test_find_all;
       test_filteri;

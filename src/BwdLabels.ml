@@ -66,7 +66,11 @@ let[@inline] find ~f = BwdNoLabels.find f
 
 let[@inline] find_opt ~f = BwdNoLabels.find_opt f
 
+let[@inline] find_index ~f = BwdNoLabels.find_index f
+
 let[@inline] find_map ~f = BwdNoLabels.find_map f
+
+let[@inline] find_mapi ~f = BwdNoLabels.find_mapi f
 
 let[@inline] filter ~f = BwdNoLabels.filter f
 

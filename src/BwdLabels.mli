@@ -98,7 +98,9 @@ val memq : 'a -> set:'a t -> bool
 
 val find : f:('a -> bool) -> 'a t -> 'a
 val find_opt : f:('a -> bool) -> 'a t -> 'a option
+val find_index : f:('a -> bool) -> 'a t -> int option
 val find_map : f:('a -> 'b option) -> 'a t -> 'b option
+val find_mapi : f:(int -> 'a -> 'b option) -> 'a t -> 'b option
 val filter : f:('a -> bool) -> 'a t -> 'a t
 val find_all : f:('a -> bool) -> 'a t -> 'a t
 val filteri : f:(int -> 'a -> bool) -> 'a t -> 'a t
