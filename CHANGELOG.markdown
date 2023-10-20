@@ -1,3 +1,11 @@
+# [2.3.0](https://github.com/RedPRL/ocaml-bwd/compare/2.2.0...2.3.0) (2023-10-19)
+
+### Features
+
+- add `init` ([#20](https://github.com/RedPRL/ocaml-bwd/issues/20)) ([22c52bc](https://github.com/RedPRL/ocaml-bwd/commit/22c52bc5299c5bb6e04fb3ed90052c13aa3254ac))
+- add inlining instructions ([75e1926](https://github.com/RedPRL/ocaml-bwd/commit/75e1926e82295a439b77f9b1adbc294976df78b8))
+- add `is_empty`, `find_index`, and `find_mapi` ([#21](https://github.com/RedPRL/ocaml-bwd/issues/21)) ([10bec85](https://github.com/RedPRL/ocaml-bwd/commit/10bec85d49e6e299d1bacf4ef32da426bdc50488))
+
 # [2.2.0](https://github.com/RedPRL/ocaml-bwd/compare/2.1.0...2.2.0) (2023-08-18)
 
 ### Features
