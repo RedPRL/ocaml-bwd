@@ -11,7 +11,7 @@ jobs:
         include:
           - ocaml-compiler: "4.12"
           - ocaml-compiler: "4.14"
-          - ocaml-compiler: "5.0"
+          - ocaml-compiler: "5.1"
             with-doc: true
     runs-on: ubuntu-latest
     steps:
