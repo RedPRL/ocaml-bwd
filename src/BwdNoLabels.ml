@@ -173,7 +173,7 @@ let iter2 f xs ys =
   let rec go =
     function
     | Emp, Emp -> ()
-    | Snoc (xs, x), Snoc (ys, y) -> f x y; go (xs, ys)
+    | Snoc (xs, x), Snoc (ys, y) -> f x y; (go[@tailcall]) (xs, ys)
     | _ -> invalid_arg "Bwd.iter2"
   in go (xs, ys)
 
@@ -261,7 +261,7 @@ let find f =
     function
     | Emp -> raise Not_found
     | Snoc (xs, x) ->
-      if f x then x else go xs
+      if f x then x else (go[@tailcall]) xs
   in go
 
 let find_opt f =
@@ -269,7 +269,7 @@ let find_opt f =
     function
     | Emp -> None
     | Snoc (xs, x) ->
-      if f x then Some x else go xs
+      if f x then Some x else (go[@tailcall]) xs
   in go
 
 let find_index f =
@@ -277,7 +277,7 @@ let find_index f =
     function
     | Emp -> None
     | Snoc (xs, x) ->
-      if f x then Some i else go (i+1) xs
+      if f x then Some i else (go[@tallcall]) (i+1) xs
   in go 0
 
 let find_map f =
@@ -287,7 +287,7 @@ let find_map f =
     | Snoc (xs, x) ->
       match f x with
       | Some _ as r -> r
-      | None -> go xs
+      | None -> (go[@tallcall]) xs
   in go
 
 let find_mapi f =
@@ -297,7 +297,7 @@ let find_mapi f =
     | Snoc (xs, x) ->
       match f i x with
       | Some _ as r -> r
-      | None -> go (i+1) xs
+      | None -> (go[@tallcall]) (i+1) xs
   in go 0
 
 let filter f =
@@ -363,7 +363,7 @@ let combine xs ys =
     function
     | Emp, Emp -> Emp
     | Snoc (xs, x), Snoc (ys, y) ->
-      Snoc (go (xs, ys), (x, y))
+      Snoc ((go[@tailcall]) (xs, ys), (x, y))
     | _ -> invalid_arg "Bwd.combine"
   in go (xs, ys)
 

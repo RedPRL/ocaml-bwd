@@ -37,19 +37,29 @@ type 'a t = 'a BwdDef.bwd =
   | Snoc of 'a t * 'a
 
 val length : 'a t -> int
+
 val compare_lengths : 'a t -> 'a t -> int
+
 val compare_length_with : 'a t -> len:int -> int
+
 val is_empty : 'a t -> bool
+
 val snoc : 'a t -> 'a -> 'a t
+
 val nth : 'a t -> int -> 'a
+
 val nth_opt : 'a t -> int -> 'a option
+
 val init : len:int -> f:(int -> 'a) -> 'a t
+
 val append : 'a t -> 'a list -> 'a t
+
 val prepend : 'a t -> 'a list -> 'a list
 
 (** {1 Comparison} *)
 
 val equal : eq:('a -> 'a -> bool) -> 'a t -> 'a t -> bool
+
 val compare : cmp:('a -> 'a -> int) -> 'a t -> 'a t -> int
 
 (** {1 Iterators}
@@ -59,12 +69,21 @@ val compare : cmp:('a -> 'a -> int) -> 'a t -> 'a t -> int
 *)
 
 val iter : f:('a -> unit) -> 'a t -> unit
+
 val iteri : f:(int -> 'a -> unit) -> 'a t -> unit
+
 val map : f:('a -> 'b) -> 'a t -> 'b t
+
 val mapi : f:(int -> 'a -> 'b) -> 'a t -> 'b t
+
 val filter_map : f:('a -> 'b option) -> 'a t -> 'b t
+
+(** Not tail-recursive. *)
 val fold_left : f:('a -> 'b -> 'a) -> init:'a -> 'b t -> 'a
+
+(** Not tail-recursive. *)
 val fold_right_map : f:('a -> 'b -> 'b * 'c) -> 'a t -> init:'b -> 'b * 'c t
+
 val fold_right : f:('a -> 'b -> 'b) -> 'a t -> init:'b -> 'b
 
 (** {1 Iterators on two lists}
@@ -74,8 +93,12 @@ val fold_right : f:('a -> 'b -> 'b) -> 'a t -> init:'b -> 'b
 *)
 
 val iter2 : f:('a -> 'b -> unit) -> 'a t -> 'b t -> unit
+
 val map2 : f:('a -> 'b -> 'c) -> 'a t -> 'b t -> 'c t
+
+(** Not tail-recursive. *)
 val fold_left2 : f:('a -> 'b -> 'c -> 'a) -> init:'a -> 'b t -> 'c t -> 'a
+
 val fold_right2 : f:('a -> 'b -> 'c -> 'c) -> 'a t -> 'b t -> init:'c -> 'c
 
 (** {1 List scanning}
@@ -85,10 +108,15 @@ val fold_right2 : f:('a -> 'b -> 'c -> 'c) -> 'a t -> 'b t -> init:'c -> 'c
 *)
 
 val for_all : f:('a -> bool) -> 'a t -> bool
+
 val exists : f:('a -> bool) -> 'a t -> bool
+
 val for_all2 : f:('a -> 'b -> bool) -> 'a t -> 'b t -> bool
+
 val exists2 : f:('a -> 'b -> bool) -> 'a t -> 'b t -> bool
+
 val mem : 'a -> set:'a t -> bool
+
 val memq : 'a -> set:'a t -> bool
 
 (** {1 List searching}
@@ -98,24 +126,38 @@ val memq : 'a -> set:'a t -> bool
 *)
 
 val find : f:('a -> bool) -> 'a t -> 'a
+
 val find_opt : f:('a -> bool) -> 'a t -> 'a option
+
 val find_index : f:('a -> bool) -> 'a t -> int option
+
 val find_map : f:('a -> 'b option) -> 'a t -> 'b option
+
 val find_mapi : f:(int -> 'a -> 'b option) -> 'a t -> 'b option
+
 val filter : f:('a -> bool) -> 'a t -> 'a t
+
 val find_all : f:('a -> bool) -> 'a t -> 'a t
+
 val filteri : f:(int -> 'a -> bool) -> 'a t -> 'a t
+
+(** Not tail-recursive. *)
 val partition : f:('a -> bool) -> 'a t -> 'a t * 'a t
+
+(** Not tail-recursive. *)
 val partition_map : f:('a -> ('b, 'c) Either.t) -> 'a t -> 'b t * 'c t
 
 (** {1 Lists of pairs} *)
 
+(** Not tail-recursive. *)
 val split : ('a * 'b) t -> 'a t * 'b t
+
 val combine : 'a t -> 'b t -> ('a * 'b) t
 
 (** {1 Backward and forward lists} *)
 
 val to_list : 'a t -> 'a list
+
 val of_list : 'a list -> 'a t
 
 (** {1 Infix notation} *)
