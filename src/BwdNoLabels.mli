@@ -141,10 +141,8 @@ val find_all : ('a -> bool) -> 'a t -> 'a t
 
 val filteri : (int -> 'a -> bool) -> 'a t -> 'a t
 
-(** Not tail-recursive. *)
 val partition : ('a -> bool) -> 'a t -> 'a t * 'a t
 
-(** Not tail-recursive. *)
 val partition_map : ('a -> ('b, 'c) Either.t) -> 'a t -> 'b t * 'c t
 
 (** {1 Lists of pairs} *)
