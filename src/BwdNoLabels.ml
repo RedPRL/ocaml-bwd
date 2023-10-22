@@ -324,32 +324,28 @@ let filteri f =
         (go[@tailcall]) (i + 1) xs
   in go 0
 
-let partition f =
-  let rec go =
-    function
-    | Emp -> Emp, Emp
+let partition f xs =
+  let rec go xs ys zs =
+    match xs with
+    | Emp -> append Emp ys, append Emp zs
     | Snoc (xs, x) ->
       if f x then
-        let ys, zs = go xs in
-        Snoc (ys, x), zs
+        go xs (x :: ys) zs
       else
-        let ys, zs = go xs in
-        ys, Snoc (zs, x)
-  in go
+        go xs ys (x :: zs)
+  in go xs [] []
 
-let partition_map f =
-  let rec go =
-    function
-    | Emp -> Emp, Emp
+let partition_map f xs =
+  let rec go xs ys zs =
+    match xs with
+    | Emp -> append Emp ys, append Emp zs
     | Snoc (xs, x) ->
       match f x with
       | Either.Left y ->
-        let ys, zs = go xs in
-        Snoc (ys, y), zs
+        go xs (y :: ys) zs
       | Either.Right z ->
-        let ys, zs = go xs in
-        ys, Snoc (zs, z)
-  in go
+        go xs ys (z :: zs)
+  in go xs [] []
 
 let rec split =
   function
