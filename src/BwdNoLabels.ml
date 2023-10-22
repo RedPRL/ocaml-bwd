@@ -330,9 +330,9 @@ let partition f xs =
     | Emp -> append Emp ys, append Emp zs
     | Snoc (xs, x) ->
       if f x then
-        go xs (x :: ys) zs
+        (go[@tailcall]) xs (x :: ys) zs
       else
-        go xs ys (x :: zs)
+        (go[@tailcall]) xs ys (x :: zs)
   in go xs [] []
 
 let partition_map f xs =
@@ -342,9 +342,9 @@ let partition_map f xs =
     | Snoc (xs, x) ->
       match f x with
       | Either.Left y ->
-        go xs (y :: ys) zs
+        (go[@tailcall]) xs (y :: ys) zs
       | Either.Right z ->
-        go xs ys (z :: zs)
+        (go[@tailcall]) xs ys (z :: zs)
   in go xs [] []
 
 let rec split =
