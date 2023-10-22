@@ -81,7 +81,6 @@ val filter_map : ('a -> 'b option) -> 'a t -> 'b t
 (** Not tail-recursive. *)
 val fold_left : ('a -> 'b -> 'a) -> 'a -> 'b t -> 'a
 
-(** Not tail-recursive. *)
 val fold_right_map : ('a -> 'b -> 'b * 'c) -> 'a t -> 'b -> 'b * 'c t
 
 val fold_right : ('a -> 'b -> 'b) -> 'a t -> 'b -> 'b
