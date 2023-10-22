@@ -151,14 +151,13 @@ let fold_left f init =
   in go
 
 let fold_right_map f xs init =
-  let rec go init =
-    function
-    | Emp -> init, Emp
+  let rec go xs init ys =
+    match xs with
+    | Emp -> init, append Emp ys
     | Snoc (xs, x) ->
       let init, y = f x init in
-      let z, ys = go init xs in
-      z, Snoc (ys, y)
-  in go init xs
+      (go[@tailcall]) xs init (y :: ys)
+  in go xs init []
 
 let fold_right f xs init =
   let rec go init =
