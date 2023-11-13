@@ -59,9 +59,11 @@ let init len f =
   else
     let[@tail_mod_cons] rec go i =
       if i >= len then Emp
+      else if i = len - 1 then Snoc (Emp, f i)
       else
-        let v = f i in
-        Snoc ((go[@tailcall]) (i+1), v)
+        let v1 = f i in
+        let v2 = f (i + 1) in
+        Snoc (Snoc ((go[@tailcall]) (i+2), v2), v1)
     in
     go 0
 
@@ -121,14 +123,22 @@ let map f =
   let[@tail_mod_cons] rec go =
     function
     | Emp -> Emp
-    | Snoc (xs, x) -> let y = f x in Snoc ((go[@tailcall]) xs, y)
+    | Snoc (Emp, x) -> let y = f x in Snoc (Emp, y)
+    | Snoc (Snoc (xs , x2), x1) ->
+        let y1 = f x1 in
+        let y2 = f x2 in
+        Snoc (Snoc ((go[@tailcall]) xs, y2), y1)
   in go
 
 let mapi f =
   let[@tail_mod_cons] rec go i =
     function
     | Emp -> Emp
-    | Snoc (xs, x) -> let y = f i x in Snoc ((go[@tailcall]) (i + 1) xs, y)
+    | Snoc (Emp, x) -> let y = f i x in Snoc (Emp, y)
+    | Snoc (Snoc (xs, x2), x1) ->
+        let y1 = f i x1 in
+        let y2 = f (i + 1) x2 in
+        Snoc (Snoc ((go[@tailcall]) (i + 2) xs, y2), y1)
   in
   go 0
 
@@ -180,8 +190,11 @@ let map2 f xs ys =
   let[@tail_mod_cons] rec go =
     function
     | Emp, Emp -> Emp
-    | Snoc (xs, x), Snoc (ys, y) ->
-      let z = f x y in Snoc ((go[@tailcall]) (xs, ys), z)
+    | Snoc (Emp, x) , Snoc (Emp, y) -> let z = f x y in Snoc (Emp, z)
+    | Snoc (Snoc (xs , x2), x1), Snoc (Snoc (ys , y2), y1) ->
+        let z1 = f x1 y1 in
+        let z2 = f x2 y2 in
+        Snoc (Snoc ((go[@tailcall]) (xs, ys), z2) , z1)
     | _ -> invalid_arg "Bwd.map2"
   in go (xs, ys)
 
