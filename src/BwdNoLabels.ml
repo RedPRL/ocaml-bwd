@@ -63,7 +63,7 @@ let init len f =
       else
         let v1 = f i in
         let v2 = f (i + 1) in
-        Snoc (Snoc ((go[@tailcall])(i+2)(last), v2), v1)
+        Snoc (Snoc ((go[@tailcall]) (i + 2) last, v2), v1)
     in
     go 0 (len - 1)
 
