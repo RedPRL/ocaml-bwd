@@ -125,9 +125,9 @@ let map f =
     | Emp -> Emp
     | Snoc (Emp, x) -> let y = f x in Snoc (Emp, y)
     | Snoc (Snoc (xs , x2), x1) ->
-        let y1 = f x1 in
-        let y2 = f x2 in
-        Snoc (Snoc ((go[@tailcall]) xs, y2), y1)
+      let y1 = f x1 in
+      let y2 = f x2 in
+      Snoc (Snoc ((go[@tailcall]) xs, y2), y1)
   in go
 
 let mapi f =
@@ -136,9 +136,9 @@ let mapi f =
     | Emp -> Emp
     | Snoc (Emp, x) -> let y = f i x in Snoc (Emp, y)
     | Snoc (Snoc (xs, x2), x1) ->
-        let y1 = f i x1 in
-        let y2 = f (i + 1) x2 in
-        Snoc (Snoc ((go[@tailcall]) (i + 2) xs, y2), y1)
+      let y1 = f i x1 in
+      let y2 = f (i + 1) x2 in
+      Snoc (Snoc ((go[@tailcall]) (i + 2) xs, y2), y1)
   in
   go 0
 
@@ -192,9 +192,9 @@ let map2 f xs ys =
     | Emp, Emp -> Emp
     | Snoc (Emp, x) , Snoc (Emp, y) -> let z = f x y in Snoc (Emp, z)
     | Snoc (Snoc (xs , x2), x1), Snoc (Snoc (ys , y2), y1) ->
-        let z1 = f x1 y1 in
-        let z2 = f x2 y2 in
-        Snoc (Snoc ((go[@tailcall]) (xs, ys), z2) , z1)
+      let z1 = f x1 y1 in
+      let z2 = f x2 y2 in
+      Snoc (Snoc ((go[@tailcall]) (xs, ys), z2) , z1)
     | _ -> invalid_arg "Bwd.map2"
   in go (xs, ys)
 
