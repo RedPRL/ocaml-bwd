@@ -9,7 +9,7 @@ With backward lists having a different type, it is impossible to make those mist
 """
 maintainer: "favonia <favonia@gmail.com>"
 authors: "The RedPRL Development Team"
-license: "Apache-2.0"
+license: "Apache-2.0 WITH LLVM-exception"
 homepage: "https://github.com/RedPRL/ocaml-bwd"
 bug-reports: "https://github.com/RedPRL/ocaml-bwd/issues"
 dev-repo: "git+https://github.com/RedPRL/ocaml-bwd.git"
