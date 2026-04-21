@@ -20,7 +20,9 @@ let[@inline] init ~len ~f = BwdNoLabels.init len f
 
 let append = BwdNoLabels.append
 
-let prepend = BwdNoLabels.prepend
+let append_list = BwdNoLabels.append_list
+
+let prepend_list = BwdNoLabels.prepend_list
 
 let[@inline] equal ~eq xs ys = BwdNoLabels.equal eq xs ys
 

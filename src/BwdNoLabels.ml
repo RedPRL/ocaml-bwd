@@ -67,7 +67,12 @@ let init len f =
     in
     go 0 (len - 1)
 
-let append xs ys =
+let[@tail_mod_cons] rec append xs ys =
+  match ys with
+  | Emp -> xs
+  | Snoc (ys, y) -> Snoc(append xs ys, y)
+
+let append_list xs ys =
   let rec go =
     function
     | xs, [] -> xs
@@ -75,7 +80,7 @@ let append xs ys =
       (go[@tailcall]) (Snoc (xs, y), ys)
   in go (xs, ys)
 
-let prepend xs ys =
+let prepend_list xs ys =
   let rec go =
     function
     | Emp, ys -> ys
@@ -163,7 +168,7 @@ let fold_left f init =
 let fold_right_map f xs init =
   let rec go xs init ys =
     match xs with
-    | Emp -> init, append Emp ys
+    | Emp -> init, append_list Emp ys
     | Snoc (xs, x) ->
       let init, y = f x init in
       (go[@tailcall]) xs init (y :: ys)
@@ -339,7 +344,7 @@ let filteri f =
 let partition f xs =
   let rec go xs ys zs =
     match xs with
-    | Emp -> append Emp ys, append Emp zs
+    | Emp -> append_list Emp ys, append_list Emp zs
     | Snoc (xs, x) ->
       if f x then
         (go[@tailcall]) xs (x :: ys) zs
@@ -350,7 +355,7 @@ let partition f xs =
 let partition_map f xs =
   let rec go xs ys zs =
     match xs with
-    | Emp -> append Emp ys, append Emp zs
+    | Emp -> append_list Emp ys, append_list Emp zs
     | Snoc (xs, x) ->
       match f x with
       | Either.Left y ->
@@ -376,19 +381,19 @@ let combine xs ys =
   in go (xs, ys)
 
 let to_list xs =
-  prepend xs []
+  prepend_list xs []
 
 let of_list xs =
-  append Emp xs
+  append_list Emp xs
 
 module Infix =
 struct
   let (<:) = snoc
-  let (<@) = append
-  let (@>) = prepend
+  let (<@) = append_list
+  let (@>) = prepend_list
   let (#<) = snoc
-  let (<><) = append
-  let (<>>) = prepend
+  let (<><) = append_list
+  let (<>>) = prepend_list
 end
 
 module Notation = Infix

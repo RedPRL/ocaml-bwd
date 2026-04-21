@@ -3,13 +3,12 @@
    {ul
    {- New:
       {ul
-      {- {!val:prepend} was added as the {i forward} version of {!val:append}.}
+      {- {!val:prepend_list} and {!val:append_list} for performing "textual order yoga".}
       {- {!val:to_list} and {!val:of_list} were added for conversions between standard lists.}
       {- {!module:Infix} was added for the infix notation.}}}
    {- Changed:
       {ul
       {- [cons] was replaced by {!val:snoc}.}
-      {- {!val:append} was replaced by a new version that performs the "textual order yoga".}
       {- All indices count from the right rather than the left:
          {!val:nth}, {!val:nth_opt}, {!val:init}, {!val:iteri}, {!val:mapi}, and {!val:filteri}.}
       {- All iteration functions work from the right rather than the left:
@@ -52,9 +51,11 @@ val nth_opt : 'a t -> int -> 'a option
 
 val init : len:int -> f:(int -> 'a) -> 'a t
 
-val append : 'a t -> 'a list -> 'a t
+val append : 'a t -> 'a t -> 'a t
 
-val prepend : 'a t -> 'a list -> 'a list
+val append_list : 'a t -> 'a list -> 'a t
+
+val prepend_list : 'a t -> 'a list -> 'a list
 
 (** {1 Comparison} *)
 
